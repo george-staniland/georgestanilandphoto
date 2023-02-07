@@ -6,7 +6,7 @@ import MenuIcon from '../public/assets/menu-icon.svg';
 import MenuIconOpen from '../public/assets/menu-icon-open.svg';
 
 const NavBarContainer = styled(Box, {
-    label: 'Navbar Container',
+    label: 'navbar-container',
 })(({ theme }) => ({
     display: "flex",
     justifyContent: "space-between",

@@ -1,9 +1,13 @@
 import { createClient } from 'next-sanity';
 import Navbar from 'components/Navbar';
+import HomePageGallery from 'components/HomePageGallery';
 
 export default function Home() {
   return (
+    <>
     <Navbar />
+    <HomePageGallery />
+    </>
   );
 }
 
