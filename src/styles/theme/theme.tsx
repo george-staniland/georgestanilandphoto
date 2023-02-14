@@ -6,6 +6,7 @@ declare module '@mui/material/styles' {
   interface TypographyVariants {
     pageHelperTitle: React.CSSProperties;
     monoSmall: React.CSSProperties;
+    spaceGrotesk: React.CSSProperties;
   }
 
   // allow configuration using `createTheme`
@@ -13,6 +14,7 @@ declare module '@mui/material/styles' {
   interface TypographyVariantsOptions {
     pageHelperTitle?: React.CSSProperties;
     monoSmall?: React.CSSProperties;
+    spaceGrotesk?: React.CSSProperties;
   }
 }
 
@@ -22,6 +24,7 @@ declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     pageHelperTitle: true;
     monoSmall: true;
+    spaceGrotesk: true;
   }
 }
 
@@ -46,15 +49,19 @@ const theme = createTheme({
   ...paletteTheme,
   typography: {
     monoSmall: {
-        fontFamily: '"Space Mono", monospace',
-        fontSize: '14px',
-        color: 'black',
+      fontFamily: '"Space Mono", monospace',
+      fontSize: '14px',
+      color: 'black',
+    },
+    spaceGrotesk: {
+      fontFamily: '"Space Grotesk", sans-serif',
+      fontSize: '18px',
+      fontWeight: '400',
     },
     body1: {
       fontFamily:
         '"Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif',
       fontSize: '26px',
-      color: 'red',
       [breakpoints.up('md')]: {
         fontSize: '16px',
         lineHeight: '22.4px',
