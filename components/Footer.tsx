@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Icon, styled, Typography } from '@mui/material';
+import Link from 'next/link';
+import { Box, styled, Typography } from '@mui/material';
+import LinkHoverAnimation from './LinkHoverAnimation';
 import MenuIcon from '../public/assets/menu-icon.svg';
 import { useGesture } from '@use-gesture/react';
 import { useSpring, animated } from '@react-spring/web';
@@ -7,25 +9,32 @@ import { useSpring, animated } from '@react-spring/web';
 const FooterContainer = styled(Box, {
     label: 'footer-container',
 })(({ theme }) => ({
-    padding: "0 8px",
+    padding: "0 14px",
     display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr 2fr',
+    gridTemplateColumns: '1fr 1fr',
+    [theme.breakpoints.up('sm')]: {
+        gridTemplateColumns: '1fr 1fr 1fr 2fr',
+        padding: "0 8px",
+    },
     [theme.breakpoints.up('md')]: {
         padding: "0 60px 30px 30px",
     },
 }));
 
 const IconWrap = styled(Box)(({ theme }) => ({
-    width: '22px',
+    width: '24px',
+    marginRight: '14px',
     position: 'relative',
     [theme.breakpoints.up('md')]: {
         width: '19px',
-        marginRight: '12px',
     },
 }));
 
 const FooterItem = styled(Typography)(({ theme }) => ({
-    paddingBottom: '4px',
+    paddingBottom: '7px',
+    [theme.breakpoints.up('sm')]: {
+        paddingBottom: '7px',
+    },
 }));
 
 const ToTopButton = () => {
@@ -69,26 +78,41 @@ const ToTopButton = () => {
 export default function Footer() {
     return (
         <FooterContainer>
-            <Box>
+            <Box gridColumn={{ xs: "span 2", sm: "span 1" }} paddingBottom={{ xs: "30px", sm: "0" }}>
                 <ToTopButton />
             </Box>
-            <Box display="flex" flexDirection="column">
+            <Box display="flex" flexDirection="column" paddingBottom={{ xs: "30px", sm: "0" }}>
+
                 <FooterItem variant="spaceGrotesk" >
-                    Commissions
+                    <LinkHoverAnimation>
+                        <Link href="/commissions">
+                            Commissions
+                        </Link>
+                    </LinkHoverAnimation>
+                </FooterItem>
+
+                <FooterItem variant="spaceGrotesk" >
+                    <LinkHoverAnimation>
+                        <Link href="/personal">
+                            Personal
+                        </Link>
+                    </LinkHoverAnimation>
                 </FooterItem>
                 <FooterItem variant="spaceGrotesk" >
-                    Personal
-                </FooterItem>
-                <FooterItem variant="spaceGrotesk" >
-                    About
+                    <LinkHoverAnimation>
+                        <Link href="/about">
+                            About
+                        </Link>
+                    </LinkHoverAnimation>
                 </FooterItem>
             </Box>
             <Box display="flex" flexDirection="column" >
                 <FooterItem variant="spaceGrotesk" >
-                    <a href="https://www.instagram.com/george.staniland/?hl=en" target="_blank" rel="noreferrer" > Instagram </a>
+                    <LinkHoverAnimation>
+                        <a href="https://www.instagram.com/george.staniland/?hl=en" target="_blank" rel="noreferrer" > Instagram </a>
+                    </LinkHoverAnimation>
                 </FooterItem>
             </Box>
-            <Box />
         </FooterContainer>
     )
 }

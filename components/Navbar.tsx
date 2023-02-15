@@ -1,6 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
+import LinkHoverAnimation from './LinkHoverAnimation';
 import { Box, styled, Typography } from '@mui/material';
-import { animated, useSpring } from '@react-spring/web';
+import { animated, useSpring, config } from '@react-spring/web';
 import Wordmark from '../public/assets/wordmark.svg';
 import MenuIcon from '../public/assets/menu-icon.svg';
 import MenuIconOpen from '../public/assets/menu-icon-open.svg';
@@ -37,16 +39,6 @@ const IconWrap = styled(Box)(({ theme }) => ({
     },
 }));
 
-const MenuContainer = styled(Box)(({ theme }) => ({
-    position: 'absolute',
-    top:'100%',
-    right: '-148%',
-    overflow: 'hidden',
-    maxHeight: '0',
-}));
-
-const AnimatedMenuContainer = animated(MenuContainer);
-
 const MenuItemWrap = styled(Box)(({ theme }) => ({
     textAlign: 'center',
 }));
@@ -55,27 +47,49 @@ export default function Navbar() {
     const [showMenu, setShowMenu] = React.useState(false);
 
     const menuSpring = useSpring({
-        maxHeight: showMenu ? '120px' : '0px',
+        opacity: showMenu ? 1 : 0,
+        config: config.stiff,
     });
 
+    const MenuContainer = styled(Box)(({ theme }) => ({
+        position: 'absolute',
+        top: '100%',
+        right: '-148%',
+        pointerEvents: showMenu ? 'auto' : 'none',
+    }));
+
+    const AnimatedMenuContainer = animated(MenuContainer);
+
     const toggleMenu = () => setShowMenu(!showMenu);
-    
+
     return (
         <NavBarContainer>
             <WordMarkWrap >
-                <Wordmark/>
+                <Wordmark />
             </WordMarkWrap>
             <IconWrap onClick={toggleMenu} >
-                {showMenu ? <MenuIconOpen/> : <MenuIcon/> }
+                {showMenu ? <MenuIconOpen /> : <MenuIcon />}
                 <AnimatedMenuContainer style={menuSpring}>
                     <MenuItemWrap padding="14px 0 8px" >
-                        <Typography variant="monoSmall">Commissions</Typography>
+                        <LinkHoverAnimation>
+                            <Link href="/commissions">
+                                <Typography variant="monoSmall">Commissions</Typography>
+                            </Link>
+                        </LinkHoverAnimation>
                     </MenuItemWrap>
                     <MenuItemWrap padding="8px 0" >
-                        <Typography variant="monoSmall">Personal</Typography>
+                        <LinkHoverAnimation>
+                            <Link href="/personal">
+                                <Typography variant="monoSmall">Personal</Typography>
+                            </Link>
+                        </LinkHoverAnimation>
                     </MenuItemWrap>
                     <MenuItemWrap padding="8px 0" >
-                        <Typography variant="monoSmall">About</Typography>
+                        <LinkHoverAnimation>
+                            <Link href="/about">
+                                <Typography variant="monoSmall">About</Typography>
+                            </Link>
+                        </LinkHoverAnimation>
                     </MenuItemWrap>
                 </AnimatedMenuContainer>
             </IconWrap>
