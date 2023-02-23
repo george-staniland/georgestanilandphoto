@@ -12,9 +12,10 @@ const GalleryContainer = styled(Box, {
     label: 'homepage-gallery-container',
 })(({ theme }) => ({
     padding: "0 8px",
+    marginTop: "110px",
     [theme.breakpoints.up('sm')]: {
         padding: "0 60px 0 30px",
-        marginTop: "80px",
+        marginTop: "150px",
     },
 }));
 

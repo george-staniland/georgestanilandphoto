@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import LinkHoverAnimation from './LinkHoverAnimation';
-import { Box, styled, Typography } from '@mui/material';
+import { Box, styled, Typography, useScrollTrigger } from '@mui/material';
 import { animated, useSpring, config } from '@react-spring/web';
+import { useGesture } from '@use-gesture/react';
 import Wordmark from '../public/assets/wordmark.svg';
 import MenuIcon from '../public/assets/menu-icon.svg';
 import MenuIconOpen from '../public/assets/menu-icon-open.svg';
@@ -11,9 +12,13 @@ const NavBarContainer = styled(Box, {
     label: 'navbar-container',
 })(({ theme }) => ({
     display: "flex",
+    position: "fixed",
     justifyContent: "space-between",
     alignItems: "center",
     height: "100px",
+    width: "100%",
+    top: "0",
+    zIndex: '10',
     padding: "0 8px",
     [theme.breakpoints.up('md')]: {
         padding: "0 60px 0 30px",
@@ -28,7 +33,7 @@ const WordMarkWrap = styled(Box)(({ theme }) => ({
     },
 }));
 
-const IconWrap = styled(Box)(({ theme }) => ({
+const MenuItemsWrap = styled(Box)(({ theme }) => ({
     width: '22px',
     marginRight: '16px',
     position: 'relative',
@@ -43,12 +48,24 @@ const MenuItemWrap = styled(Box)(({ theme }) => ({
     textAlign: 'center',
 }));
 
+const IconWrap = styled(Box)(({ theme }) => ({
+    cursor: 'pointer',
+    transformOrigin: 'center',
+}));
+
 export default function Navbar() {
     const [showMenu, setShowMenu] = React.useState(false);
+    const [iconHovered, setIconHovered] = React.useState(false);
+    const trigger = useScrollTrigger({ threshold: 42, disableHysteresis: true });
 
     const menuSpring = useSpring({
         opacity: showMenu ? 1 : 0,
         config: config.stiff,
+    });
+
+    const iconSpring = useSpring({
+        transform: iconHovered ? 'rotate(45deg)' : 'rotate(0deg)',
+        opacity: iconHovered ? '0.9' : '1',
     });
 
     const MenuContainer = styled(Box)(({ theme }) => ({
@@ -58,7 +75,14 @@ export default function Navbar() {
         pointerEvents: showMenu ? 'auto' : 'none',
     }));
 
+    const bind = useGesture({
+        onHover: ({ hovering }) => {
+            setIconHovered(hovering ?? false);
+        },
+    })
+
     const AnimatedMenuContainer = animated(MenuContainer);
+    const AnimatedIconWrap = animated(IconWrap);
 
     const toggleMenu = () => setShowMenu(!showMenu);
 
@@ -67,8 +91,10 @@ export default function Navbar() {
             <WordMarkWrap >
                 <Wordmark />
             </WordMarkWrap>
-            <IconWrap onClick={toggleMenu} >
-                {showMenu ? <MenuIconOpen /> : <MenuIcon />}
+            <MenuItemsWrap onClick={toggleMenu} >
+                <AnimatedIconWrap {...bind()} style={iconSpring}>
+                    {showMenu ? <MenuIconOpen /> : <MenuIcon />}
+                </AnimatedIconWrap>
                 <AnimatedMenuContainer style={menuSpring}>
                     <MenuItemWrap padding="14px 0 8px" >
                         <LinkHoverAnimation>
@@ -92,7 +118,7 @@ export default function Navbar() {
                         </LinkHoverAnimation>
                     </MenuItemWrap>
                 </AnimatedMenuContainer>
-            </IconWrap>
+            </MenuItemsWrap>
         </NavBarContainer>
     );
 }
