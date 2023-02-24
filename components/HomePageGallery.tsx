@@ -7,6 +7,14 @@ import Door from '../public/assets/door.jpg';
 import Garden from '../public/assets/garden.jpg';
 import Goodsport from '../public/assets/goodsport.jpg';
 import Blackcat from '../public/assets/black-cat.jpg';
+import Fireplace from '../public/assets/eve_fireplace.jpg';
+import Flowers from '../public/assets/flowers.jpg';
+import ParkingBuilding from '../public/assets/parking-building.jpg';
+import WaterBottle from '../public/assets/waterbottle.jpg';
+import GransTable from '../public/assets/grans_table.jpg';
+import Xanda from '../public/assets/xanda.jpg';
+import Flowers1 from '../public/assets/flowers_1.jpg';
+import Orari from '../public/assets/orari.jpg';
 
 const GalleryContainer = styled(Box, {
     label: 'homepage-gallery-container',
@@ -29,10 +37,29 @@ const GallerySection = styled(Box, {
     gridTemplateColumns: '1fr',
     gap: '20px',
     [theme.breakpoints.up('sm')]: {
-        height: 'clamp(900px, 140vh, 3000px)',
+        height: 'unset',
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gridAutoRows: 'minmax(300px, 70vh)',
+        gridAutoRows: 'clamp(400px, 60vh, 3000px)',
         gap: '40px',
+    },
+}));
+
+const GallerySection2 = styled(GallerySection)(({ theme }) => ({
+    [theme.breakpoints.up('sm')]: {
+        columnGap: '40px',
+        rowGap: 'clamp(60px, 12vh, 300px)'
+    },
+}));
+
+const GallerySection3 = styled(GallerySection)(({ theme }) => ({
+    [theme.breakpoints.up('sm')]: {
+        gridAutoRows: 'clamp(400px, 85vh, 3000px)',
+    },
+}));
+
+const GallerySection5 = styled(GallerySection)(({ theme }) => ({
+    [theme.breakpoints.up('sm')]: {
+        gridAutoRows: 'clamp(400px, 68vh, 3000px)',
     },
 }));
 
@@ -58,8 +85,24 @@ const Section1Child2 = styled(SectionChild)(({ theme }) => ({
     },
 }));
 
+const Section4Child1 = styled(SectionChild)(({ theme }) => ({
+    [theme.breakpoints.up('sm')]: {
+        gridRowStart: '1',
+        gridRowEnd: '3',
+        gridColumnStart: '1',
+    },
+}));
 
-export default function Navbar() {
+const Section5Child2 = styled(SectionChild)(({ theme }) => ({
+    [theme.breakpoints.up('sm')]: {
+        gridRowStart: '1',
+        gridRowEnd: '3',
+        gridColumnStart: '2',
+    },
+}));
+
+
+export default function HomePageGallery() {
     return (
         <GalleryContainer>
             <GallerySection>
@@ -72,7 +115,6 @@ export default function Navbar() {
                             quality="100"
                             style={{
                                 objectFit: 'contain',
-                                objectPosition: 'left'
                             }}
                             sizes="(max-width: 768px) 100vw,
                             (max-width: 1800px) 60vw, 47vw"
@@ -92,7 +134,7 @@ export default function Navbar() {
                         />
                     </ImageContainer>
                 </Section1Child2>
-                <SectionChild padding="6vh 6vw">
+                <SectionChild padding="0 15%" >
                     <ImageContainer>
                         <Image
                             src={Castlehill}
@@ -101,7 +143,6 @@ export default function Navbar() {
                             quality="100"
                             style={{
                                 objectFit: 'contain',
-                                objectPosition: 'top',
                             }}
                             sizes="(max-width: 768px) 100vw,
                             (max-width: 1800px) 60vw, 33vw"
@@ -109,12 +150,12 @@ export default function Navbar() {
                     </ImageContainer>
                 </SectionChild>
             </GallerySection>
-            <GallerySection>
-                <SectionChild padding="13vh 0">
+            <GallerySection2>
+                <SectionChild padding="11% 0">
                     <ImageContainer>
                         <Image
                             src={Door}
-                            alt="picture of man in field"
+                            alt="Upclose film image of a door"
                             fill
                             quality="100"
                             style={{
@@ -126,7 +167,7 @@ export default function Navbar() {
                         />
                     </ImageContainer>
                 </SectionChild>
-                <SectionChild padding="5vh 0">
+                <SectionChild padding="4% 0">
                     <ImageContainer>
                         <Image
                             src={Garden}
@@ -139,10 +180,40 @@ export default function Navbar() {
                         />
                     </ImageContainer>
                 </SectionChild>
-                <SectionChild paddingLeft="10vw">
+                <SectionChild paddingLeft="28%">
                     <ImageContainer>
                         <Image
                             src={Goodsport}
+                            alt="picture of man in field"
+                            fill
+                            quality="100"
+                            style={{
+                                objectFit: 'contain',
+                            }}
+                            sizes="(max-width: 768px) 100vw,
+                            (max-width: 1800px) 60vw, 33vw"
+                        />
+                    </ImageContainer>
+                </SectionChild>
+                <SectionChild padding="1% 25% 20%">
+                    <ImageContainer>
+                        <Image
+                            src={Blackcat}
+                            alt="Architecural photo of melbourne bar"
+                            fill
+                            quality="100"
+                            style={{ objectFit: 'contain' }}
+                            sizes="(max-width: 768px) 100vw,
+                            (max-width: 1800px) 60vw, 33vw"
+                        />
+                    </ImageContainer>
+                </SectionChild>
+            </GallerySection2>
+            <GallerySection3>
+                <SectionChild padding="30% 10% 0 0">
+                    <ImageContainer>
+                        <Image
+                            src={Fireplace}
                             alt="picture of man in field"
                             fill
                             quality="100"
@@ -155,11 +226,52 @@ export default function Navbar() {
                         />
                     </ImageContainer>
                 </SectionChild>
-                <SectionChild padding="0 5vw 20vh 5vw">
+                <SectionChild padding="0 6%">
                     <ImageContainer>
                         <Image
-                            src={Blackcat}
-                            alt="picture of man in field"
+                            src={Flowers}
+                            alt="flowers"
+                            fill
+                            quality="100"
+                            style={{ objectFit: 'contain', objectPosition: 'top' }}
+                            sizes="(max-width: 768px) 100vw,
+                            (max-width: 1800px) 60vw, 33vw"
+                        />
+                    </ImageContainer>
+                </SectionChild>
+            </GallerySection3>
+            <GallerySection marginTop="-7vh">
+                <Section4Child1 paddingLeft="10%">
+                    <ImageContainer>
+                        <Image
+                            src={ParkingBuilding}
+                            alt="flowers"
+                            fill
+                            quality="100"
+                            style={{ objectFit: 'contain', objectPosition: 'center' }}
+                            sizes="(max-width: 768px) 100vw,
+                            (max-width: 1800px) 60vw, 33vw"
+                        />
+                    </ImageContainer>
+                </Section4Child1>
+                <SectionChild padding="0 0 0 30%">
+                    <ImageContainer>
+                        <Image
+                            src={WaterBottle}
+                            alt="flowers"
+                            fill
+                            quality="100"
+                            style={{ objectFit: 'contain', objectPosition: 'top' }}
+                            sizes="(max-width: 768px) 100vw,
+                            (max-width: 1800px) 60vw, 33vw"
+                        />
+                    </ImageContainer>
+                </SectionChild>
+                <SectionChild paddingLeft="11%">
+                    <ImageContainer>
+                        <Image
+                            src={GransTable}
+                            alt="flowers"
                             fill
                             quality="100"
                             style={{ objectFit: 'contain' }}
@@ -169,6 +281,47 @@ export default function Navbar() {
                     </ImageContainer>
                 </SectionChild>
             </GallerySection>
+            <GallerySection5 marginBottom="160px">
+                <SectionChild padding="0 5% 0 22%">
+                    <ImageContainer>
+                        <Image
+                            src={Xanda}
+                            alt="flowers"
+                            fill
+                            quality="100"
+                            style={{ objectFit: 'contain', objectPosition: 'top' }}
+                            sizes="(max-width: 768px) 100vw,
+                            (max-width: 1800px) 60vw, 33vw"
+                        />
+                    </ImageContainer>
+                </SectionChild>
+                <Section5Child2 padding="35% 6%">
+                    <ImageContainer>
+                        <Image
+                            src={Flowers1}
+                            alt="flowers"
+                            fill
+                            quality="100"
+                            style={{ objectFit: 'contain', objectPosition: 'top' }}
+                            sizes="(max-width: 768px) 100vw,
+                            (max-width: 1800px) 60vw, 33vw"
+                        />
+                    </ImageContainer>
+                </Section5Child2>
+                <SectionChild padding="0 2% 0 6%">
+                    <ImageContainer>
+                        <Image
+                            src={Orari}
+                            alt="flowers"
+                            fill
+                            quality="100"
+                            style={{ objectFit: 'contain', objectPosition: 'right' }}
+                            sizes="(max-width: 768px) 100vw,
+                            (max-width: 1800px) 60vw, 33vw"
+                        />
+                    </ImageContainer>
+                </SectionChild>
+            </GallerySection5>
         </GalleryContainer>
     );
 }
