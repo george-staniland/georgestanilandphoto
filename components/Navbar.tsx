@@ -8,6 +8,18 @@ import Wordmark from '../public/assets/wordmark.svg';
 import MenuIcon from '../public/assets/menu-icon.svg';
 import MenuIconOpen from '../public/assets/menu-icon-open.svg';
 
+
+const MetaDataPanel = () => {
+    return (
+        <Box display="flex">
+            <Typography variant="monoSmaller" paddingRight="100px">thing 1</Typography>
+            <Typography variant="monoSmaller" paddingRight="50px">thing 2</Typography>
+            <Typography variant="monoSmaller" paddingRight="100px">thing 3</Typography>
+            <Typography variant="monoSmaller" paddingRight="100px">thing 4</Typography>
+        </Box>
+    )
+}
+
 const NavBarContainer = styled(Box, {
     label: 'navbar-container',
 })(({ theme }) => ({
@@ -25,12 +37,23 @@ const NavBarContainer = styled(Box, {
     },
 }));
 
-const WordMarkWrap = styled(Box)(({ theme }) => ({
+const WordMarkWrap = styled(Box, {
+    label: 'wordmark-wrap',
+})(({ theme }) => ({
     width: '70%',
     maxWidth: '330px',
     [theme.breakpoints.up('md')]: {
         width: '330px',
     },
+}));
+
+const MenuRightWrap = styled(Box, {
+    label: 'menu-right-wrap',
+})(({ theme }) => ({
+    flexGrow: '1',
+    display: 'flex',
+    justifyContent: 'end',
+    alignItems: 'center',
 }));
 
 const MenuItemsWrap = styled(Box)(({ theme }) => ({
@@ -91,34 +114,37 @@ export default function Navbar() {
             <WordMarkWrap >
                 <Wordmark />
             </WordMarkWrap>
-            <MenuItemsWrap onClick={toggleMenu} >
-                <AnimatedIconWrap {...bind()} style={iconSpring}>
-                    {showMenu ? <MenuIconOpen /> : <MenuIcon />}
-                </AnimatedIconWrap>
-                <AnimatedMenuContainer style={menuSpring}>
-                    <MenuItemWrap padding="14px 0 8px" >
-                        <LinkHoverAnimation>
-                            <Link href="/commissions">
-                                <Typography variant="monoSmall">Commissions</Typography>
-                            </Link>
-                        </LinkHoverAnimation>
-                    </MenuItemWrap>
-                    <MenuItemWrap padding="8px 0" >
-                        <LinkHoverAnimation>
-                            <Link href="/personal">
-                                <Typography variant="monoSmall">Personal</Typography>
-                            </Link>
-                        </LinkHoverAnimation>
-                    </MenuItemWrap>
-                    <MenuItemWrap padding="8px 0" >
-                        <LinkHoverAnimation>
-                            <Link href="/about">
-                                <Typography variant="monoSmall">About</Typography>
-                            </Link>
-                        </LinkHoverAnimation>
-                    </MenuItemWrap>
-                </AnimatedMenuContainer>
-            </MenuItemsWrap>
+            <MenuRightWrap>
+                <MetaDataPanel />
+                <MenuItemsWrap onClick={toggleMenu} >
+                    <AnimatedIconWrap {...bind()} style={iconSpring}>
+                        {showMenu ? <MenuIconOpen /> : <MenuIcon />}
+                    </AnimatedIconWrap>
+                    <AnimatedMenuContainer style={menuSpring}>
+                        <MenuItemWrap padding="14px 0 8px" >
+                            <LinkHoverAnimation>
+                                <Link href="/commissions">
+                                    <Typography variant="monoSmall">Commissions</Typography>
+                                </Link>
+                            </LinkHoverAnimation>
+                        </MenuItemWrap>
+                        <MenuItemWrap padding="8px 0" >
+                            <LinkHoverAnimation>
+                                <Link href="/personal">
+                                    <Typography variant="monoSmall">Personal</Typography>
+                                </Link>
+                            </LinkHoverAnimation>
+                        </MenuItemWrap>
+                        <MenuItemWrap padding="8px 0" >
+                            <LinkHoverAnimation>
+                                <Link href="/about">
+                                    <Typography variant="monoSmall">About</Typography>
+                                </Link>
+                            </LinkHoverAnimation>
+                        </MenuItemWrap>
+                    </AnimatedMenuContainer>
+                </MenuItemsWrap>
+            </MenuRightWrap>
         </NavBarContainer>
     );
 }

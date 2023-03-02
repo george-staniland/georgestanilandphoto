@@ -6,6 +6,7 @@ declare module '@mui/material/styles' {
   interface TypographyVariants {
     pageHelperTitle: React.CSSProperties;
     monoSmall: React.CSSProperties;
+    monoSmaller: React.CSSProperties;
     spaceGrotesk: React.CSSProperties;
   }
 
@@ -14,6 +15,7 @@ declare module '@mui/material/styles' {
   interface TypographyVariantsOptions {
     pageHelperTitle?: React.CSSProperties;
     monoSmall?: React.CSSProperties;
+    monoSmaller?: React.CSSProperties;
     spaceGrotesk?: React.CSSProperties;
   }
 }
@@ -24,6 +26,7 @@ declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     pageHelperTitle: true;
     monoSmall: true;
+    monoSmaller: true;
     spaceGrotesk: true;
   }
 }
@@ -48,6 +51,11 @@ const paletteTheme = createTheme({
 const theme = createTheme({
   ...paletteTheme,
   typography: {
+    monoSmaller: {
+      fontFamily: '"Space Mono", monospace',
+      fontSize: '12px',
+      color: 'black',
+    },
     monoSmall: {
       fontFamily: '"Space Mono", monospace',
       fontSize: '14px',

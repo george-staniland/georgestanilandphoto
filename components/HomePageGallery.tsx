@@ -1,4 +1,5 @@
 import { Box, styled } from '@mui/material';
+import { useHover, useGesture } from '@use-gesture/react';
 import Image from 'next/image';
 import Jono from '../public/assets/jono.jpg';
 import Ehan from '../public/assets/eugene.jpg';
@@ -77,6 +78,16 @@ const SectionChild = styled(Box, {
     display: 'flex',
 }));
 
+const Section1Child1 = styled(SectionChild)(({ theme }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.up('sm')]: {
+        gridRowStart: '1',
+        gridRowEnd: '3',
+        gridColumnStart: '1',
+    },
+}));
+
 const Section1Child2 = styled(SectionChild)(({ theme }) => ({
     [theme.breakpoints.up('sm')]: {
         gridRowStart: '1',
@@ -103,24 +114,58 @@ const Section5Child2 = styled(SectionChild)(({ theme }) => ({
 
 
 export default function HomePageGallery() {
+
+    interface Args {
+        0: object;
+    }
+
+    const testFunction = (args: Args) => {
+        console.log(args[0])
+    }
+
+    const bind = useHover(({ args }) => testFunction(args))
+
+    const testData = {
+        'one': 'first thing',
+        'two': 'second thing',
+        'three': 'third thing',
+    }
+
     return (
         <GalleryContainer>
             <GallerySection>
-                <SectionChild>
-                    <ImageContainer>
-                        <Image
-                            src={Jono}
-                            alt="picture of man in field"
-                            fill
-                            quality="100"
-                            style={{
-                                objectFit: 'contain',
-                            }}
-                            sizes="(max-width: 768px) 100vw,
+                <Section1Child1>
+                    <Box>
+                        <ImageContainer paddingTop="85.714%" {...bind(testData)} >
+                            <Image
+                                src={Jono}
+                                alt="picture of man in field"
+                                fill
+                                quality="100"
+                                style={{
+                                    objectFit: 'contain',
+                                }}
+                                sizes="(max-width: 768px) 100vw,
                             (max-width: 1800px) 60vw, 47vw"
-                        />
-                    </ImageContainer>
-                </SectionChild>
+                            />
+                        </ImageContainer>
+                    </Box>
+                    <Box display="flex" flexGrow="1" paddingTop="40px">
+                        <ImageContainer>
+                            <Image
+                                src={Castlehill}
+                                alt="picture of man in field"
+                                fill
+                                quality="100"
+                                style={{
+                                    objectFit: 'contain',
+                                }}
+                                sizes="(max-width: 768px) 100vw,
+                            (max-width: 1800px) 60vw, 33vw"
+                            />
+                        </ImageContainer>
+                    </Box>
+                </Section1Child1>
                 <Section1Child2 padding="30vh 12% 20vh">
                     <ImageContainer>
                         <Image
@@ -134,21 +179,6 @@ export default function HomePageGallery() {
                         />
                     </ImageContainer>
                 </Section1Child2>
-                <SectionChild padding="0 15%" >
-                    <ImageContainer>
-                        <Image
-                            src={Castlehill}
-                            alt="picture of man in field"
-                            fill
-                            quality="100"
-                            style={{
-                                objectFit: 'contain',
-                            }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
-                </SectionChild>
             </GallerySection>
             <GallerySection2>
                 <SectionChild padding="11% 0">
