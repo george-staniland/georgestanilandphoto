@@ -1,4 +1,6 @@
 import { Box, styled } from '@mui/material';
+import React from 'react';
+import { NavMetaData } from '@/pages';
 import { useHover, useGesture } from '@use-gesture/react';
 import Image from 'next/image';
 import Jono from '../public/assets/jono.jpg';
@@ -112,24 +114,22 @@ const Section5Child2 = styled(SectionChild)(({ theme }) => ({
     },
 }));
 
+interface Props {
+    setMetaData: React.Dispatch<React.SetStateAction<{}>>;
+}
 
-export default function HomePageGallery() {
+export default function HomePageGallery(props: Props) {
 
-    interface Args {
-        0: object;
-    }
+    const { setMetaData } = props;
 
-    const testFunction = (args: Args) => {
-        console.log(args[0])
-    }
-
-    const bind = useHover(({ args }) => testFunction(args))
+    const bind = useHover(({ args, hovering }) => setMetaData(hovering ? args[0] : {}));
 
     const testData = {
-        'one': 'first thing',
-        'two': 'second thing',
-        'three': 'third thing',
-    }
+        meta1: 'meta 1',
+        meta2: 'meta 2',
+        meta3: 'meta 3',
+        meta4: 'meta 4',
+    };
 
     return (
         <GalleryContainer>

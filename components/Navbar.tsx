@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import LinkHoverAnimation from './LinkHoverAnimation';
+import { NavMetaData } from '@/pages';
 import { Box, styled, Typography, useScrollTrigger } from '@mui/material';
 import { animated, useSpring, config } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
@@ -8,14 +9,18 @@ import Wordmark from '../public/assets/wordmark.svg';
 import MenuIcon from '../public/assets/menu-icon.svg';
 import MenuIconOpen from '../public/assets/menu-icon-open.svg';
 
+interface Props {
+    navMetaData: NavMetaData;
+}
 
-const MetaDataPanel = () => {
+const MetaDataPanel = (props: Props) => {
+    const { navMetaData } = props;
     return (
         <Box display="flex">
-            <Typography variant="monoSmaller" paddingRight="100px">thing 1</Typography>
-            <Typography variant="monoSmaller" paddingRight="50px">thing 2</Typography>
-            <Typography variant="monoSmaller" paddingRight="100px">thing 3</Typography>
-            <Typography variant="monoSmaller" paddingRight="100px">thing 4</Typography>
+            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData.meta1}</Typography>
+            <Typography variant="monoSmaller" paddingRight="50px">{navMetaData.meta2}</Typography>
+            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData.meta3}</Typography>
+            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData.meta4}</Typography>
         </Box>
     )
 }
@@ -76,7 +81,8 @@ const IconWrap = styled(Box)(({ theme }) => ({
     transformOrigin: 'center',
 }));
 
-export default function Navbar() {
+export default function Navbar(props: Props) {
+    const { navMetaData } = props;
     const [showMenu, setShowMenu] = React.useState(false);
     const [iconHovered, setIconHovered] = React.useState(false);
     const trigger = useScrollTrigger({ threshold: 42, disableHysteresis: true });
@@ -115,7 +121,7 @@ export default function Navbar() {
                 <Wordmark />
             </WordMarkWrap>
             <MenuRightWrap>
-                <MetaDataPanel />
+                <MetaDataPanel navMetaData={navMetaData} />
                 <MenuItemsWrap onClick={toggleMenu} >
                     <AnimatedIconWrap {...bind()} style={iconSpring}>
                         {showMenu ? <MenuIconOpen /> : <MenuIcon />}
