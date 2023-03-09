@@ -10,17 +10,17 @@ import MenuIcon from '../public/assets/menu-icon.svg';
 import MenuIconOpen from '../public/assets/menu-icon-open.svg';
 
 interface Props {
-    navMetaData: NavMetaData;
+    navMetaData?: NavMetaData;
 }
 
 const MetaDataPanel = (props: Props) => {
     const { navMetaData } = props;
     return (
         <Box display="flex">
-            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData.meta1}</Typography>
-            <Typography variant="monoSmaller" paddingRight="50px">{navMetaData.meta2}</Typography>
-            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData.meta3}</Typography>
-            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData.meta4}</Typography>
+            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.meta1}</Typography>
+            <Typography variant="monoSmaller" paddingRight="50px">{navMetaData?.meta2}</Typography>
+            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.meta3}</Typography>
+            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.meta4}</Typography>
         </Box>
     )
 }

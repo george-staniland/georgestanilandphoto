@@ -1,7 +1,9 @@
 import { Box, styled } from '@mui/material';
 import React from 'react';
+import { createClient } from 'next-sanity';
+import imageUrlBuilder from '@sanity/image-url'
 import { NavMetaData } from '@/pages';
-import { useHover, useGesture } from '@use-gesture/react';
+import { useHover } from '@use-gesture/react';
 import Image from 'next/image';
 import Jono from '../public/assets/jono.jpg';
 import Ehan from '../public/assets/eugene.jpg';
@@ -18,6 +20,66 @@ import GransTable from '../public/assets/grans_table.jpg';
 import Xanda from '../public/assets/xanda.jpg';
 import Flowers1 from '../public/assets/flowers_1.jpg';
 import Orari from '../public/assets/orari.jpg';
+
+const ImageContainer = styled(Box, {
+    label: 'image-container',
+})(({ theme }) => ({
+    position: 'relative',
+    flexGrow: '1',
+}));
+
+interface HomePageImageProps {
+    setMetaData: React.Dispatch<React.SetStateAction<{}>>;
+    objectFit?: React.CSSProperties['objectFit'];
+    sizes?: string;
+    paddingTop?: string;
+    imageData: {
+        image: {
+            asset: {
+                _ref: string;
+                _type: string;
+            }
+        };
+        imageMetaData: {};
+        altText: string;
+    }
+}
+
+const HomePageImage = (homePageImageProps: HomePageImageProps) => {
+
+    const {
+        objectFit = "contain",
+        sizes = "(max-width: 768px) 100vw, (max-width: 1800px) 60vw, 47vw",
+        paddingTop = "",
+        setMetaData,
+        imageData
+    } = homePageImageProps;
+
+    const { altText, image, imageMetaData } = imageData;
+
+    const bind = useHover(({ args, hovering }) => setMetaData(hovering ? args[0] : {}));
+
+    const builder = imageUrlBuilder(client);
+
+    function urlFor(source: String) {
+        return builder.image(source);
+    }
+
+    return (
+        <ImageContainer {...bind(imageMetaData)} paddingTop={paddingTop} >
+            <Image
+                src={urlFor(image.asset._ref).url()}
+                alt={altText}
+                fill
+                quality="100"
+                style={{
+                    objectFit: objectFit,
+                }}
+                sizes={sizes}
+            />
+        </ImageContainer>
+    )
+}
 
 const GalleryContainer = styled(Box, {
     label: 'homepage-gallery-container',
@@ -66,13 +128,6 @@ const GallerySection5 = styled(GallerySection)(({ theme }) => ({
     },
 }));
 
-const ImageContainer = styled(Box, {
-    label: 'image-container',
-})(({ theme }) => ({
-    position: 'relative',
-    flexGrow: '1',
-}));
-
 const SectionChild = styled(Box, {
     label: 'section-child',
 })(({ theme }) => ({
@@ -116,27 +171,31 @@ const Section5Child2 = styled(SectionChild)(({ theme }) => ({
 
 interface Props {
     setMetaData: React.Dispatch<React.SetStateAction<{}>>;
+    images: {}[];
 }
 
 export default function HomePageGallery(props: Props) {
 
-    const { setMetaData } = props;
-
-    const bind = useHover(({ args, hovering }) => setMetaData(hovering ? args[0] : {}));
-
-    const testData = {
-        meta1: 'meta 1',
-        meta2: 'meta 2',
-        meta3: 'meta 3',
-        meta4: 'meta 4',
-    };
+    const { setMetaData, images } = props;
+    console.log(images);
 
     return (
         <GalleryContainer>
             <GallerySection>
+                <SectionChild>
+                    <HomePageImage
+                        setMetaData={setMetaData}
+                        imageData={images[0]}
+                    />
+                </SectionChild>
+                <SectionChild>
+                    test
+                </SectionChild>
+            </GallerySection>
+            <GallerySection>
                 <Section1Child1>
                     <Box>
-                        <ImageContainer paddingTop="85.714%" {...bind(testData)} >
+                        <ImageContainer paddingTop="85.714%" >
                             <Image
                                 src={Jono}
                                 alt="picture of man in field"
@@ -355,3 +414,10 @@ export default function HomePageGallery(props: Props) {
         </GalleryContainer>
     );
 }
+
+const client = createClient({
+    projectId: 'nimz3ndn',
+    dataset: 'production',
+    apiVersion: '2023-01-01',
+    useCdn: false,
+});

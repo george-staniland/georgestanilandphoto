@@ -11,14 +11,18 @@ export interface NavMetaData {
   meta4?: string;
 }
 
-export default function Home() {
+interface Props {
+  homePageImages: [];
+}
 
+export default function Home(props: Props) {
+  const { homePageImages } = props;
   const [navMetaData, setMetaData] = React.useState<NavMetaData>({});
 
   return (
     <>
       <Navbar navMetaData={navMetaData} />
-      <HomePageGallery setMetaData={setMetaData} />
+      <HomePageGallery images={homePageImages} setMetaData={setMetaData} />
       <Footer />
     </>
   );
@@ -32,11 +36,11 @@ const client = createClient({
 });
 
 export async function getStaticProps() {
-  const pets = await client.fetch('*[_type == "pet"]');
+  const homePageImages = await client.fetch('*[_type == "home-page-image"]');
 
   return {
     props: {
-      pets,
+      homePageImages,
     },
   };
 }
