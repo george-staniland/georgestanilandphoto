@@ -11,17 +11,24 @@ import MenuIconOpen from '../public/assets/menu-icon-open.svg';
 
 interface Props {
     navMetaData?: NavMetaData;
+    metaVisible: boolean;
 }
 
 const MetaDataPanel = (props: Props) => {
-    const { navMetaData } = props;
+    const { navMetaData, metaVisible } = props;
+
+    const spring = useSpring({
+        opacity: metaVisible ? 1 : 0,
+        config: config.stiff,
+    });
+
+    const ABox = animated(Box);
     return (
-        <Box display="flex">
-            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.meta1}</Typography>
-            <Typography variant="monoSmaller" paddingRight="50px">{navMetaData?.meta2}</Typography>
-            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.meta3}</Typography>
-            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.meta4}</Typography>
-        </Box>
+        <ABox display="flex" style={spring}>
+            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.imageTitle}</Typography>
+            <Typography variant="monoSmaller" paddingRight="50px">{navMetaData?.seriesOrClient}</Typography>
+            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.date}</Typography>
+        </ABox>
     )
 }
 
@@ -82,7 +89,7 @@ const IconWrap = styled(Box)(({ theme }) => ({
 }));
 
 export default function Navbar(props: Props) {
-    const { navMetaData } = props;
+    const { navMetaData, metaVisible } = props;
     const [showMenu, setShowMenu] = React.useState(false);
     const [iconHovered, setIconHovered] = React.useState(false);
     const trigger = useScrollTrigger({ threshold: 42, disableHysteresis: true });
@@ -121,7 +128,7 @@ export default function Navbar(props: Props) {
                 <Wordmark />
             </WordMarkWrap>
             <MenuRightWrap>
-                <MetaDataPanel navMetaData={navMetaData} />
+                <MetaDataPanel navMetaData={navMetaData} metaVisible={metaVisible} />
                 <MenuItemsWrap onClick={toggleMenu} >
                     <AnimatedIconWrap {...bind()} style={iconSpring}>
                         {showMenu ? <MenuIconOpen /> : <MenuIcon />}

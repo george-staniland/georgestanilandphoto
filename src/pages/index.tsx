@@ -5,10 +5,9 @@ import Footer from 'components/Footer';
 import HomePageGallery from 'components/HomePageGallery';
 
 export interface NavMetaData {
-  meta1?: string;
-  meta2?: string;
-  meta3?: string;
-  meta4?: string;
+  imageTitle?: string;
+  seriesOrClient?: string;
+  date?: string;
 }
 
 interface Props {
@@ -18,11 +17,12 @@ interface Props {
 export default function Home(props: Props) {
   const { homePageImages } = props;
   const [navMetaData, setMetaData] = React.useState<NavMetaData>({});
+  const [metaVisible, setMetaVisibile] = React.useState(false);
 
   return (
     <>
-      <Navbar navMetaData={navMetaData} />
-      <HomePageGallery images={homePageImages} setMetaData={setMetaData} />
+      <Navbar navMetaData={navMetaData} metaVisible={metaVisible} />
+      <HomePageGallery images={homePageImages} setMetaData={setMetaData} setMetaVisible={setMetaVisibile} />
       <Footer />
     </>
   );
@@ -36,7 +36,7 @@ const client = createClient({
 });
 
 export async function getStaticProps() {
-  const homePageImages = await client.fetch('*[_type == "home-page-image"]');
+  const homePageImages = await client.fetch('*[_type == "home-page-image"]| order(_createdAt desc)');
 
   return {
     props: {

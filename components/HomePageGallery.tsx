@@ -30,6 +30,7 @@ const ImageContainer = styled(Box, {
 
 interface HomePageImageProps {
     setMetaData: React.Dispatch<React.SetStateAction<{}>>;
+    setMetaVisible: React.Dispatch<React.SetStateAction<boolean>>;
     objectFit?: React.CSSProperties['objectFit'];
     sizes?: string;
     paddingTop?: string;
@@ -52,12 +53,16 @@ const HomePageImage = (homePageImageProps: HomePageImageProps) => {
         sizes = "(max-width: 768px) 100vw, (max-width: 1800px) 60vw, 47vw",
         paddingTop = "",
         setMetaData,
+        setMetaVisible,
         imageData
     } = homePageImageProps;
 
     const { altText, image, imageMetaData } = imageData;
 
-    const bind = useHover(({ args, hovering }) => setMetaData(hovering ? args[0] : {}));
+    const bind = useHover(({ args, hovering }) => {
+        setMetaData(args[0]);
+        setMetaVisible(hovering ? true : false)
+    });
 
     const builder = imageUrlBuilder(client);
 
@@ -171,43 +176,26 @@ const Section5Child2 = styled(SectionChild)(({ theme }) => ({
 
 interface Props {
     setMetaData: React.Dispatch<React.SetStateAction<{}>>;
+    setMetaVisible: React.Dispatch<React.SetStateAction<boolean>>;
     images: {}[];
 }
 
 export default function HomePageGallery(props: Props) {
 
-    const { setMetaData, images } = props;
+    const { setMetaData, setMetaVisible, images } = props;
     console.log(images);
 
     return (
         <GalleryContainer>
             <GallerySection>
-                <SectionChild>
-                    <HomePageImage
-                        setMetaData={setMetaData}
-                        imageData={images[0]}
-                    />
-                </SectionChild>
-                <SectionChild>
-                    test
-                </SectionChild>
-            </GallerySection>
-            <GallerySection>
                 <Section1Child1>
                     <Box>
-                        <ImageContainer paddingTop="85.714%" >
-                            <Image
-                                src={Jono}
-                                alt="picture of man in field"
-                                fill
-                                quality="100"
-                                style={{
-                                    objectFit: 'contain',
-                                }}
-                                sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 47vw"
-                            />
-                        </ImageContainer>
+                        <HomePageImage
+                            setMetaData={setMetaData}
+                            setMetaVisible={setMetaVisible}
+                            imageData={images[0]}
+                            paddingTop="80%"
+                        />
                     </Box>
                     <Box display="flex" flexGrow="1" paddingTop="40px">
                         <ImageContainer>
@@ -226,17 +214,11 @@ export default function HomePageGallery(props: Props) {
                     </Box>
                 </Section1Child1>
                 <Section1Child2 padding="30vh 12% 20vh">
-                    <ImageContainer>
-                        <Image
-                            src={Ehan}
-                            alt="picture of man in field"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                        imageData={images[1]}
+                    />
                 </Section1Child2>
             </GallerySection>
             <GallerySection2>
