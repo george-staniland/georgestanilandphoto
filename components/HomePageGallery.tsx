@@ -5,9 +5,6 @@ import imageUrlBuilder from '@sanity/image-url'
 import { NavMetaData } from '@/pages';
 import { useHover } from '@use-gesture/react';
 import Image from 'next/image';
-import Jono from '../public/assets/jono.jpg';
-import Ehan from '../public/assets/eugene.jpg';
-import Castlehill from '../public/assets/castlehill.jpg';
 import Door from '../public/assets/door.jpg';
 import Garden from '../public/assets/garden.jpg';
 import Goodsport from '../public/assets/goodsport.jpg';
@@ -21,12 +18,6 @@ import Xanda from '../public/assets/xanda.jpg';
 import Flowers1 from '../public/assets/flowers_1.jpg';
 import Orari from '../public/assets/orari.jpg';
 
-const ImageContainer = styled(Box, {
-    label: 'image-container',
-})(({ theme }) => ({
-    position: 'relative',
-    flexGrow: '1',
-}));
 
 interface HomePageImageProps {
     setMetaData: React.Dispatch<React.SetStateAction<{}>>;
@@ -34,16 +25,8 @@ interface HomePageImageProps {
     objectFit?: React.CSSProperties['objectFit'];
     sizes?: string;
     paddingTop?: string;
-    imageData: {
-        image: {
-            asset: {
-                _ref: string;
-                _type: string;
-            }
-        };
-        imageMetaData: {};
-        altText: string;
-    }
+    imageData: {},
+    title?: string;
 }
 
 const HomePageImage = (homePageImageProps: HomePageImageProps) => {
@@ -57,11 +40,11 @@ const HomePageImage = (homePageImageProps: HomePageImageProps) => {
         imageData
     } = homePageImageProps;
 
-    const { altText, image, imageMetaData } = imageData;
+    const { image, imageMetaData } = imageData;
 
     const bind = useHover(({ args, hovering }) => {
         setMetaData(args[0]);
-        setMetaVisible(hovering ? true : false)
+        setMetaVisible(hovering ? true : false);
     });
 
     const builder = imageUrlBuilder(client);
@@ -74,7 +57,7 @@ const HomePageImage = (homePageImageProps: HomePageImageProps) => {
         <ImageContainer {...bind(imageMetaData)} paddingTop={paddingTop} >
             <Image
                 src={urlFor(image.asset._ref).url()}
-                alt={altText}
+                alt='test'
                 fill
                 quality="100"
                 style={{
@@ -112,6 +95,13 @@ const GallerySection = styled(Box, {
         gridAutoRows: 'clamp(400px, 60vh, 3000px)',
         gap: '40px',
     },
+}));
+
+const ImageContainer = styled(Box, {
+    label: 'image-container',
+})(({ theme }) => ({
+    position: 'relative',
+    flexGrow: '1',
 }));
 
 const GallerySection2 = styled(GallerySection)(({ theme }) => ({
@@ -177,13 +167,15 @@ const Section5Child2 = styled(SectionChild)(({ theme }) => ({
 interface Props {
     setMetaData: React.Dispatch<React.SetStateAction<{}>>;
     setMetaVisible: React.Dispatch<React.SetStateAction<boolean>>;
-    images: {}[];
+    gallery: {
+        images: {}[],
+    };
 }
 
 export default function HomePageGallery(props: Props) {
 
-    const { setMetaData, setMetaVisible, images } = props;
-    console.log(images);
+    const { setMetaData, setMetaVisible, gallery } = props;
+    const { images } = gallery;
 
     return (
         <GalleryContainer>
@@ -191,33 +183,28 @@ export default function HomePageGallery(props: Props) {
                 <Section1Child1>
                     <Box>
                         <HomePageImage
+                            title="jono in field"
+                            imageData={images[0]}
                             setMetaData={setMetaData}
                             setMetaVisible={setMetaVisible}
-                            imageData={images[0]}
                             paddingTop="80%"
                         />
                     </Box>
                     <Box display="flex" flexGrow="1" paddingTop="40px">
-                        <ImageContainer>
-                            <Image
-                                src={Castlehill}
-                                alt="picture of man in field"
-                                fill
-                                quality="100"
-                                style={{
-                                    objectFit: 'contain',
-                                }}
-                                sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                            />
-                        </ImageContainer>
+                        <HomePageImage
+                            title="castlehill"
+                            imageData={images[2]}
+                            setMetaData={setMetaData}
+                            setMetaVisible={setMetaVisible}
+                        />
                     </Box>
                 </Section1Child1>
                 <Section1Child2 padding="30vh 12% 20vh">
                     <HomePageImage
+                        title="Eugene"
+                        imageData={images[1]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
-                        imageData={images[1]}
                     />
                 </Section1Child2>
             </GallerySection>

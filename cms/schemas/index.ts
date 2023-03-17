@@ -1,4 +1,4 @@
-import homePageImage from './homePageImage';
-import gallery from './gallery';
+import imageGalleries from './ImageGalleries';
+import { imageWithMeta } from './documents/imageWithMeta';
 
-export const schemaTypes = [homePageImage, gallery]
+export const schemaTypes = [imageGalleries, imageWithMeta ]
