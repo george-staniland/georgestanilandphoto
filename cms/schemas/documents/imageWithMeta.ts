@@ -5,16 +5,16 @@ export const imageWithMeta = defineType ({
   type: 'document',
   title: 'Image With Meta',
   fields: [
-    defineField({
-      type: 'string',
-      name: 'title',
-      title: 'Title',
-    }), 
     defineField ({
       type: 'image',
       name: 'image',
       title: 'Image'
     }),
+    defineField({
+      type: 'string',
+      name: 'altText',
+      title: 'Alt Text',
+    }), 
     defineField({
       title: 'Image Meta Data',
       name: 'imageMetaData',

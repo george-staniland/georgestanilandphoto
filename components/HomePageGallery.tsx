@@ -2,30 +2,22 @@ import { Box, styled } from '@mui/material';
 import React from 'react';
 import { createClient } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url'
-import { NavMetaData } from '@/pages';
 import { useHover } from '@use-gesture/react';
 import Image from 'next/image';
-import Door from '../public/assets/door.jpg';
-import Garden from '../public/assets/garden.jpg';
-import Goodsport from '../public/assets/goodsport.jpg';
-import Blackcat from '../public/assets/black-cat.jpg';
-import Fireplace from '../public/assets/eve_fireplace.jpg';
-import Flowers from '../public/assets/flowers.jpg';
-import ParkingBuilding from '../public/assets/parking-building.jpg';
-import WaterBottle from '../public/assets/waterbottle.jpg';
-import GransTable from '../public/assets/grans_table.jpg';
-import Xanda from '../public/assets/xanda.jpg';
-import Flowers1 from '../public/assets/flowers_1.jpg';
-import Orari from '../public/assets/orari.jpg';
-
+import Missing from '../public/assets/missing.png'
 
 interface HomePageImageProps {
     setMetaData: React.Dispatch<React.SetStateAction<{}>>;
     setMetaVisible: React.Dispatch<React.SetStateAction<boolean>>;
     objectFit?: React.CSSProperties['objectFit'];
+    objectPosition?: React.CSSProperties['objectPosition'];
     sizes?: string;
     paddingTop?: string;
-    imageData: {},
+    imageData: {
+        altText?: string;
+        imageMetaData?: {};
+        image?: {},
+    },
     title?: string;
 }
 
@@ -33,6 +25,7 @@ const HomePageImage = (homePageImageProps: HomePageImageProps) => {
 
     const {
         objectFit = "contain",
+        objectPosition = "center",
         sizes = "(max-width: 768px) 100vw, (max-width: 1800px) 60vw, 47vw",
         paddingTop = "",
         setMetaData,
@@ -40,7 +33,7 @@ const HomePageImage = (homePageImageProps: HomePageImageProps) => {
         imageData
     } = homePageImageProps;
 
-    const { image, imageMetaData } = imageData;
+    const { image, imageMetaData, altText = '' } = imageData;
 
     const bind = useHover(({ args, hovering }) => {
         setMetaData(args[0]);
@@ -56,12 +49,13 @@ const HomePageImage = (homePageImageProps: HomePageImageProps) => {
     return (
         <ImageContainer {...bind(imageMetaData)} paddingTop={paddingTop} >
             <Image
-                src={urlFor(image.asset._ref).url()}
-                alt='test'
+                src={image ? urlFor(image.asset._ref).url() : Missing}
+                alt={altText}
                 fill
                 quality="100"
                 style={{
                     objectFit: objectFit,
+                    objectPosition: objectPosition,
                 }}
                 sizes={sizes}
             />
@@ -176,6 +170,7 @@ export default function HomePageGallery(props: Props) {
 
     const { setMetaData, setMetaVisible, gallery } = props;
     const { images } = gallery;
+    console.log(images);
 
     return (
         <GalleryContainer>
@@ -210,174 +205,115 @@ export default function HomePageGallery(props: Props) {
             </GallerySection>
             <GallerySection2>
                 <SectionChild padding="11% 0">
-                    <ImageContainer>
-                        <Image
-                            src={Door}
-                            alt="Upclose film image of a door"
-                            fill
-                            quality="100"
-                            style={{
-                                objectFit: 'contain',
-                                objectPosition: 'left'
-                            }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="nicholson st door"
+                        imageData={images[3]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                        objectPosition="left"
+                    />
                 </SectionChild>
                 <SectionChild padding="4% 0">
-                    <ImageContainer>
-                        <Image
-                            src={Garden}
-                            alt="picture of man in field"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="toni in garden"
+                        imageData={images[4]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                    />
                 </SectionChild>
                 <SectionChild paddingLeft="28%">
-                    <ImageContainer>
-                        <Image
-                            src={Goodsport}
-                            alt="picture of man in field"
-                            fill
-                            quality="100"
-                            style={{
-                                objectFit: 'contain',
-                            }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="goodsport shoes"
+                        imageData={images[5]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                    />
                 </SectionChild>
                 <SectionChild padding="1% 25% 20%">
-                    <ImageContainer>
-                        <Image
-                            src={Blackcat}
-                            alt="Architecural photo of melbourne bar"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="Blackcat"
+                        imageData={images[6]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                    />
                 </SectionChild>
             </GallerySection2>
             <GallerySection3>
                 <SectionChild padding="30% 10% 0 0">
-                    <ImageContainer>
-                        <Image
-                            src={Fireplace}
-                            alt="picture of man in field"
-                            fill
-                            quality="100"
-                            style={{
-                                objectFit: 'contain',
-                                objectPosition: 'right'
-                            }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="Eve's fireplace"
+                        imageData={images[7]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                        objectPosition="right"
+                    />
                 </SectionChild>
                 <SectionChild padding="0 6%">
-                    <ImageContainer>
-                        <Image
-                            src={Flowers}
-                            alt="flowers"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain', objectPosition: 'top' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="Flowerbed"
+                        imageData={images[8]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                        objectPosition="top"
+                    />
                 </SectionChild>
             </GallerySection3>
             <GallerySection marginTop="-7vh">
                 <Section4Child1 paddingLeft="10%">
-                    <ImageContainer>
-                        <Image
-                            src={ParkingBuilding}
-                            alt="flowers"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain', objectPosition: 'center' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="Goodsport carpark"
+                        imageData={images[10]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                    />
                 </Section4Child1>
                 <SectionChild padding="0 0 0 30%">
-                    <ImageContainer>
-                        <Image
-                            src={WaterBottle}
-                            alt="flowers"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain', objectPosition: 'top' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="bottle"
+                        imageData={images[9]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                        objectPosition="top"
+                    />
+
                 </SectionChild>
                 <SectionChild paddingLeft="11%">
-                    <ImageContainer>
-                        <Image
-                            src={GransTable}
-                            alt="flowers"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="grannys table"
+                        imageData={images[11]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                    />
                 </SectionChild>
             </GallerySection>
             <GallerySection5 marginBottom="160px">
                 <SectionChild padding="0 5% 0 22%">
-                    <ImageContainer>
-                        <Image
-                            src={Xanda}
-                            alt="flowers"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain', objectPosition: 'top' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="xander and alba"
+                        imageData={images[12]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                        objectPosition='top'
+                    />
+
                 </SectionChild>
                 <Section5Child2 padding="35% 6%">
-                    <ImageContainer>
-                        <Image
-                            src={Flowers1}
-                            alt="flowers"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain', objectPosition: 'top' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="Flower at parliament st"
+                        imageData={images[13]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                        objectPosition="top"
+                    />
                 </Section5Child2>
                 <SectionChild padding="0 2% 0 6%">
-                    <ImageContainer>
-                        <Image
-                            src={Orari}
-                            alt="flowers"
-                            fill
-                            quality="100"
-                            style={{ objectFit: 'contain', objectPosition: 'right' }}
-                            sizes="(max-width: 768px) 100vw,
-                            (max-width: 1800px) 60vw, 33vw"
-                        />
-                    </ImageContainer>
+                    <HomePageImage
+                        title="Orari river"
+                        imageData={images[14]}
+                        setMetaData={setMetaData}
+                        setMetaVisible={setMetaVisible}
+                        objectPosition="right"
+                    />
                 </SectionChild>
             </GallerySection5>
         </GalleryContainer>
