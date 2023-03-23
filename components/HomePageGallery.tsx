@@ -1,67 +1,7 @@
-import { Box, styled } from '@mui/material';
 import React from 'react';
+import { Box, styled } from '@mui/material';
 import { createClient } from 'next-sanity';
-import imageUrlBuilder from '@sanity/image-url'
-import { useHover } from '@use-gesture/react';
-import Image from 'next/image';
-import Missing from '../public/assets/missing.png'
-
-interface HomePageImageProps {
-    setMetaData: React.Dispatch<React.SetStateAction<{}>>;
-    setMetaVisible: React.Dispatch<React.SetStateAction<boolean>>;
-    objectFit?: React.CSSProperties['objectFit'];
-    objectPosition?: React.CSSProperties['objectPosition'];
-    sizes?: string;
-    paddingTop?: string;
-    imageData: {
-        altText?: string;
-        imageMetaData?: {};
-        image?: {},
-    },
-    title?: string;
-}
-
-const HomePageImage = (homePageImageProps: HomePageImageProps) => {
-
-    const {
-        objectFit = "contain",
-        objectPosition = "center",
-        sizes = "(max-width: 768px) 100vw, (max-width: 1800px) 60vw, 47vw",
-        paddingTop = "",
-        setMetaData,
-        setMetaVisible,
-        imageData
-    } = homePageImageProps;
-
-    const { image, imageMetaData, altText = '' } = imageData;
-
-    const bind = useHover(({ args, hovering }) => {
-        setMetaData(args[0]);
-        setMetaVisible(hovering ? true : false);
-    });
-
-    const builder = imageUrlBuilder(client);
-
-    function urlFor(source: String) {
-        return builder.image(source);
-    }
-
-    return (
-        <ImageContainer {...bind(imageMetaData)} paddingTop={paddingTop} >
-            <Image
-                src={image ? urlFor(image.asset._ref).url() : Missing}
-                alt={altText}
-                fill
-                quality="100"
-                style={{
-                    objectFit: objectFit,
-                    objectPosition: objectPosition,
-                }}
-                sizes={sizes}
-            />
-        </ImageContainer>
-    )
-}
+import HomePageImage from './HomePageImage';
 
 const GalleryContainer = styled(Box, {
     label: 'homepage-gallery-container',
@@ -77,6 +17,7 @@ const GalleryContainer = styled(Box, {
 const GallerySection = styled(Box, {
     label: 'gallery-section',
 })(({ theme }) => ({
+    border: '1px solid green',
     display: 'grid',
     minHeight: '650px',
     height: '100vh',
@@ -91,11 +32,10 @@ const GallerySection = styled(Box, {
     },
 }));
 
-const ImageContainer = styled(Box, {
-    label: 'image-container',
-})(({ theme }) => ({
-    position: 'relative',
-    flexGrow: '1',
+const GallerySection1 = styled(GallerySection)(({ theme }) => ({
+    [theme.breakpoints.up('sm')]: {
+        columnGap: '0',
+    },
 }));
 
 const GallerySection2 = styled(GallerySection)(({ theme }) => ({
@@ -170,11 +110,10 @@ export default function HomePageGallery(props: Props) {
 
     const { setMetaData, setMetaVisible, gallery } = props;
     const { images } = gallery;
-    console.log(images);
 
     return (
         <GalleryContainer>
-            <GallerySection>
+            <GallerySection1>
                 <Section1Child1>
                     <Box>
                         <HomePageImage
@@ -194,15 +133,16 @@ export default function HomePageGallery(props: Props) {
                         />
                     </Box>
                 </Section1Child1>
-                <Section1Child2 padding="30vh 12% 20vh">
+                <Section1Child2 padding="30vh 0 20vh 0">
                     <HomePageImage
                         title="Eugene"
                         imageData={images[1]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
+                        objectPosition="right"
                     />
                 </Section1Child2>
-            </GallerySection>
+            </GallerySection1>
             <GallerySection2>
                 <SectionChild padding="11% 0">
                     <HomePageImage
