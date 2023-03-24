@@ -17,7 +17,6 @@ const GalleryContainer = styled(Box, {
 const GallerySection = styled(Box, {
     label: 'gallery-section',
 })(({ theme }) => ({
-    border: '1px solid green',
     display: 'grid',
     minHeight: '650px',
     height: '100vh',

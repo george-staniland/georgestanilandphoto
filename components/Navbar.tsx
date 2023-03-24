@@ -11,7 +11,8 @@ import MenuIconOpen from '../public/assets/menu-icon-open.svg';
 
 interface Props {
     navMetaData?: NavMetaData;
-    metaVisible: boolean;
+    hasMetadata?: boolean;
+    metaVisible?: boolean;
 }
 
 const MetaDataPanel = (props: Props) => {
@@ -19,13 +20,14 @@ const MetaDataPanel = (props: Props) => {
 
     const spring = useSpring({
         opacity: metaVisible ? 1 : 0,
+        backgroundColor: metaVisible ? '#ffffff' : '#ffffff00',
         config: config.stiff,
     });
 
     const ABox = animated(Box);
     return (
-        <ABox display="flex" style={spring}>
-            <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.imageTitle}</Typography>
+        <ABox display="flex" style={spring} >
+            <Typography variant="monoSmaller" padding="0 100px">{navMetaData?.imageTitle}</Typography>
             <Typography variant="monoSmaller" paddingRight="50px">{navMetaData?.seriesOrClient}</Typography>
             <Typography variant="monoSmaller" paddingRight="100px">{navMetaData?.date}</Typography>
         </ABox>
@@ -89,7 +91,7 @@ const IconWrap = styled(Box)(({ theme }) => ({
 }));
 
 export default function Navbar(props: Props) {
-    const { navMetaData, metaVisible } = props;
+    const { navMetaData, metaVisible, hasMetadata } = props;
     const [showMenu, setShowMenu] = React.useState(false);
     const [iconHovered, setIconHovered] = React.useState(false);
     const trigger = useScrollTrigger({ threshold: 42, disableHysteresis: true });
@@ -128,7 +130,7 @@ export default function Navbar(props: Props) {
                 <Wordmark />
             </WordMarkWrap>
             <MenuRightWrap>
-                <MetaDataPanel navMetaData={navMetaData} metaVisible={metaVisible} />
+                {hasMetadata && <MetaDataPanel navMetaData={navMetaData} metaVisible={metaVisible} />}
                 <MenuItemsWrap onClick={toggleMenu} >
                     <AnimatedIconWrap {...bind()} style={iconSpring}>
                         {showMenu ? <MenuIconOpen /> : <MenuIcon />}

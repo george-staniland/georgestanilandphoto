@@ -21,7 +21,7 @@ export default function Home(props: Props) {
 
   return (
     <>
-      <Navbar navMetaData={navMetaData} metaVisible={metaVisible} />
+      <Navbar navMetaData={navMetaData} metaVisible={metaVisible} hasMetadata />
       <HomePageGallery gallery={imageGalleries[0]} setMetaData={setMetaData} setMetaVisible={setMetaVisibile} />
       <Footer />
     </>
