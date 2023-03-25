@@ -72,7 +72,7 @@ const MenuRightWrap = styled(Box, {
 
 const MenuItemsWrap = styled(Box)(({ theme }) => ({
     width: '22px',
-    marginRight: '16px',
+    marginRight: '0',
     position: 'relative',
     overflow: 'visible',
     [theme.breakpoints.up('md')]: {
@@ -127,7 +127,9 @@ export default function Navbar(props: Props) {
     return (
         <NavBarContainer>
             <WordMarkWrap >
-                <Wordmark />
+                <Link href="/">
+                    <Wordmark />
+                </Link>
             </WordMarkWrap>
             <MenuRightWrap>
                 {hasMetadata && <MetaDataPanel navMetaData={navMetaData} metaVisible={metaVisible} />}

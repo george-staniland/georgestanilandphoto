@@ -8,6 +8,7 @@ declare module '@mui/material/styles' {
     monoSmall: React.CSSProperties;
     monoSmaller: React.CSSProperties;
     spaceGrotesk: React.CSSProperties;
+    spaceGroteskSmall: React.CSSProperties;
   }
 
   // allow configuration using `createTheme`
@@ -17,6 +18,7 @@ declare module '@mui/material/styles' {
     monoSmall?: React.CSSProperties;
     monoSmaller?: React.CSSProperties;
     spaceGrotesk?: React.CSSProperties;
+    spaceGroteskSmall?: React.CSSProperties;
   }
 }
 
@@ -28,6 +30,7 @@ declare module '@mui/material/Typography' {
     monoSmall: true;
     monoSmaller: true;
     spaceGrotesk: true;
+    spaceGroteskSmall: true;
   }
 }
 
@@ -64,6 +67,11 @@ const theme = createTheme({
     spaceGrotesk: {
       fontFamily: '"Space Grotesk", sans-serif',
       fontSize: '18px',
+      fontWeight: '400',
+    },
+    spaceGroteskSmall: {
+      fontFamily: '"Space Grotesk", sans-serif',
+      fontSize: '12px',
       fontWeight: '400',
     },
     body1: {
