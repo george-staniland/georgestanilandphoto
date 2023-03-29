@@ -1,11 +1,9 @@
 import React from 'react';
-import { createClient } from 'next-sanity';
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
-import { Box, styled, Typography, useMediaQuery, useTheme } from "@mui/material"
-import { useSpring, animated } from "@react-spring/web";
-import { useGesture } from '@use-gesture/react';
 import Project from 'components/Project';
+import { createClient } from 'next-sanity';
+import { Box, styled } from "@mui/material"
 import { ProjectModel } from '../../models/project';
 
 const AllProjects = styled(Box, {
@@ -18,11 +16,9 @@ interface Props {
     commissionedProjects: ProjectModel[],
 }
 
-export default function Commisions(props: Props) {
 
+export default function Commisions(props: Props) {
     const { commissionedProjects } = props;
-    const project1 = commissionedProjects[0];
-    console.log(project1);
 
     return (
         <>
@@ -39,6 +35,7 @@ export default function Commisions(props: Props) {
     )
 }
 
+// TO DO: use tokens here
 const client = createClient({
     projectId: 'nimz3ndn',
     dataset: 'production',
@@ -47,7 +44,7 @@ const client = createClient({
 });
 
 export async function getStaticProps() {
-    const commissionedProjects = await client.fetch('*[_type == "projects" && project_category in ["commissioned"]]');
+    const commissionedProjects = await client.fetch('*[_type == "projects" && project_category in ["commissioned"]] | order(orderRank)');
 
     return {
         props: {

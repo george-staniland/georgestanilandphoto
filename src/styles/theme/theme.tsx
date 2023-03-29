@@ -60,7 +60,7 @@ const theme = createTheme({
   typography: {
     monoSmaller: {
       fontFamily: '"Space Mono", monospace',
-      fontSize: '12px',
+      fontSize: '13px',
       color: 'black',
     },
     monoSmall: {
@@ -75,7 +75,7 @@ const theme = createTheme({
     },
     spaceGroteskSmall: {
       fontFamily: '"Space Grotesk", sans-serif',
-      fontSize: '12px',
+      fontSize: '13px',
       fontWeight: '400',
     },
     body1: {

@@ -43,5 +43,22 @@ export default {
         title: 'Images',
         of: [{type: 'image'}]
       },
+      {
+        name: 'orderRank',
+        type: 'string',
+        title: 'Order Rank',
+        hidden: true,
+      },
+      {
+        name: 'project_slug',
+        type: 'slug',
+        options: {
+          source: 'project_title',
+          slugify: (input: string) => input
+                               .toLowerCase()
+                               .replace(/\s+/g, '-')
+                               .slice(0, 200)
+        }
+      }
     ]
   }
