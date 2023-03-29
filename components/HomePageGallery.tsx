@@ -31,10 +31,8 @@ const GallerySection = styled(Box, {
     },
 }));
 
-const GallerySection1 = styled(GallerySection)(({ theme }) => ({
-    [theme.breakpoints.up('sm')]: {
-        columnGap: '0',
-    },
+const GallerySection1Flex = styled(Box)(({ theme }) => ({
+    display: 'flex',
 }));
 
 const GallerySection2 = styled(GallerySection)(({ theme }) => ({
@@ -112,36 +110,63 @@ export default function HomePageGallery(props: Props) {
 
     return (
         <GalleryContainer>
-            <GallerySection1>
-                <Section1Child1>
-                    <Box>
+            <GallerySection1Flex>
+                <Box
+                    flexGrow="1"
+                    display="flex"
+                    alignItems="center"
+                    flexDirection="column"
+                >
+                    <Box
+                        height={{ xs: "60vh", lg: "70vh" }}
+                        minHeight={{ xs: "300px", lg: "610px" }}
+                        paddingRight={{ xs: "15px", xl: "0" }}
+                        width="100%"
+                        display="flex"
+                    >
                         <HomePageImage
                             title="jono in field"
                             imageData={images[0]}
                             setMetaData={setMetaData}
                             setMetaVisible={setMetaVisible}
-                            paddingTop="80%"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            priority
                         />
                     </Box>
-                    <Box display="flex" flexGrow="1" paddingTop="40px">
+                    <Box
+                        height={{ xs: "50vh", lg: "65vh" }}
+                        minHeight={{ xs: "300px", lg: "550px" }}
+                        marginTop={{ xs: "5vh", lg: "8vh" }}
+                        width="88%"
+                        display="flex"
+                    >
                         <HomePageImage
                             title="castlehill"
                             imageData={images[2]}
                             setMetaData={setMetaData}
                             setMetaVisible={setMetaVisible}
+                            sizes="(max-width: 768px) 100vw, 47vw"
                         />
                     </Box>
-                </Section1Child1>
-                <Section1Child2 padding="30vh 0 20vh 0">
-                    <HomePageImage
-                        title="Eugene"
-                        imageData={images[1]}
-                        setMetaData={setMetaData}
-                        setMetaVisible={setMetaVisible}
-                        objectPosition="right"
-                    />
-                </Section1Child2>
-            </GallerySection1>
+                </Box>
+                <Box flexGrow="1" paddingTop="20%" >
+                    <Box
+                        height={{ xs: "60vh", lg: "80vh" }}
+                        minHeight={{ xs: "300px", lg: "550px" }}
+                        display="flex"
+                    >
+                        <HomePageImage
+                            title="eugene"
+                            imageData={images[1]}
+                            setMetaData={setMetaData}
+                            setMetaVisible={setMetaVisible}
+                            sizes="(max-width: 768px) 100vw, 47vw"
+                            objectPosition="right"
+                            priority
+                        />
+                    </Box>
+                </Box>
+            </GallerySection1Flex>
             <GallerySection2>
                 <SectionChild padding="11% 0">
                     <HomePageImage
@@ -255,7 +280,7 @@ export default function HomePageGallery(props: Props) {
                     />
                 </SectionChild>
             </GallerySection5>
-        </GalleryContainer>
+        </GalleryContainer >
     );
 }
 

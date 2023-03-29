@@ -20,6 +20,10 @@ declare module '@mui/material/styles' {
     spaceGrotesk?: React.CSSProperties;
     spaceGroteskSmall?: React.CSSProperties;
   }
+
+  interface BreakpointOverrides {
+    xxl: true;
+  }
 }
 
 // Update the Typography's variant prop options
@@ -82,6 +86,16 @@ const theme = createTheme({
         fontSize: '16px',
         lineHeight: '22.4px',
       },
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      xxl: 1900,
     },
   },
 });
