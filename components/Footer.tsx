@@ -75,11 +75,19 @@ const ToTopButton = () => {
     )
 }
 
-export default function Footer() {
+interface Props {
+    showButton?: boolean;
+}
+
+export default function Footer(props: Props) {
+    const { showButton = true } = props;
     return (
         <FooterContainer>
-            <Box gridColumn={{ xs: "span 2", sm: "span 1" }} paddingBottom={{ xs: "30px", sm: "0" }}>
-                <ToTopButton />
+            <Box
+                gridColumn={{ xs: "span 2", sm: "span 1" }}
+                paddingBottom={{ xs: "30px", sm: "0" }}
+            >
+                {showButton && <ToTopButton />}
             </Box>
             <Box display="flex" flexDirection="column" paddingBottom={{ xs: "30px", sm: "0" }}>
 
@@ -111,6 +119,11 @@ export default function Footer() {
                     <LinkHoverAnimation>
                         <a href="https://www.instagram.com/george.staniland/?hl=en" target="_blank" rel="noreferrer" > Instagram </a>
                     </LinkHoverAnimation>
+                </FooterItem>
+            </Box>
+            <Box display="flex" justifyContent="flex-end" alignItems="flex-end" gridColumn={{ xs: "span 2", sm: "span 1" }}>
+                <FooterItem variant="spaceGroteskSmall" >
+                    © George Staniland Photography 2023
                 </FooterItem>
             </Box>
         </FooterContainer>

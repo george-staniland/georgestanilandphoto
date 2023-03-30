@@ -63,7 +63,7 @@ interface Props {
 export default function Project(props: Props) {
     let { index } = props;
     const { project } = props;
-    const { project_title, project_year, cover_image, description, project_slug } = project;
+    const { project_title, project_year, cover_image, description, project_slug, client_or_type } = project;
     const [isHovered, setHovered] = React.useState(false);
     const theme = useTheme();
     const smallerThanTablet = useMediaQuery(theme.breakpoints.down('md'));
@@ -102,6 +102,7 @@ export default function Project(props: Props) {
                     </Box>
                     <Box maxWidth="700px" display="flex" flexDirection="column">
                         <Typography variant="monoSmaller" paddingBottom={{ xs: "10px", sm: "50px" }} >{project_title}</Typography>
+                        <Typography variant="monoSmaller">{client_or_type}</Typography>
                         <Typography variant="monoSmaller" paddingBottom={{ xs: "25px", sm: "50px" }} >{project_year}</Typography>
                         <Typography variant="monoSmaller" >{description}</Typography>
                     </Box>

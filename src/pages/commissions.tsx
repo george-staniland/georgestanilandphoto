@@ -30,7 +30,7 @@ export default function Commisions(props: Props) {
                     )
                 })}
             </AllProjects>
-            <Footer />
+            <Footer showButton={false} />
         </>
     )
 }

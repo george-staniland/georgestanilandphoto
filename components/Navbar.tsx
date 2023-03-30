@@ -94,6 +94,7 @@ export default function Navbar(props: Props) {
     const { navMetaData, metaVisible, hasMetadata } = props;
     const [showMenu, setShowMenu] = React.useState(false);
     const [iconHovered, setIconHovered] = React.useState(false);
+    const [wordHovered, setWordHovered] = React.useState(false);
     const trigger = useScrollTrigger({ threshold: 42, disableHysteresis: true });
 
     const menuSpring = useSpring({
@@ -104,6 +105,11 @@ export default function Navbar(props: Props) {
     const iconSpring = useSpring({
         transform: iconHovered ? 'rotate(45deg)' : 'rotate(0deg)',
         opacity: iconHovered ? '0.9' : '1',
+    });
+
+    const wordSpring = useSpring({
+        opacity: wordHovered ? '0.7' : '1',
+        transform: wordHovered ? 'rotate(0.6deg)' : 'rotate(0deg)',
     });
 
     const MenuContainer = styled(Box)(({ theme }) => ({
@@ -117,20 +123,27 @@ export default function Navbar(props: Props) {
         onHover: ({ hovering }) => {
             setIconHovered(hovering ?? false);
         },
-    })
+    });
+
+    const bindWord = useGesture({
+        onHover: ({ hovering }) => {
+            setWordHovered(hovering ?? false);
+        },
+    });
 
     const AnimatedMenuContainer = animated(MenuContainer);
     const AnimatedIconWrap = animated(IconWrap);
+    const AnimatedWordWrap = animated(WordMarkWrap);
 
     const toggleMenu = () => setShowMenu(!showMenu);
 
     return (
         <NavBarContainer>
-            <WordMarkWrap >
+            <AnimatedWordWrap {...bindWord()} style={wordSpring}>
                 <Link href="/">
                     <Wordmark />
                 </Link>
-            </WordMarkWrap>
+            </AnimatedWordWrap>
             <MenuRightWrap>
                 {hasMetadata && <MetaDataPanel navMetaData={navMetaData} metaVisible={metaVisible} />}
                 <MenuItemsWrap onClick={toggleMenu} >

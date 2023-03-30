@@ -11,6 +11,11 @@ export default {
         title: 'Project Title'
       },
       {
+        name: 'client_or_type',
+        type: 'string',
+        title: 'Client or Type'
+      },
+      {
         name: 'project_year',
         type: 'number',
         title: 'Project Year'
