@@ -1,4 +1,5 @@
 import { createClient } from 'next-sanity';
+import Head from 'next/head';
 import React from 'react';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
@@ -21,6 +22,9 @@ export default function Home(props: Props) {
 
   return (
     <>
+      <Head>
+        <title>George Staniland Photography Auckland</title>
+      </Head>
       <Navbar navMetaData={navMetaData} metaVisible={metaVisible} hasMetadata />
       <HomePageGallery gallery={imageGalleries[0]} setMetaData={setMetaData} setMetaVisible={setMetaVisibile} />
       <Footer />

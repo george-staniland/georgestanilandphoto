@@ -109,7 +109,8 @@ export default function Navbar(props: Props) {
 
     const wordSpring = useSpring({
         opacity: wordHovered ? '0.7' : '1',
-        transform: wordHovered ? 'rotate(0.6deg)' : 'rotate(0deg)',
+        transform: wordHovered ? 'rotate(0.3deg)' : 'rotate(0deg)',
+        config: config.wobbly,
     });
 
     const MenuContainer = styled(Box)(({ theme }) => ({

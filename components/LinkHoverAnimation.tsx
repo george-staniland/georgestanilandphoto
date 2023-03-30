@@ -35,9 +35,9 @@ export default function LinkHoverAnimation(props: React.PropsWithChildren) {
 
     const BackgroundShape = styled(Box)(({ theme }) => ({
         position: 'absolute',
-        left: '-10%',
+        left: '-5%',
         height: '120%',
-        width: '120%',
+        width: '110%',
         zIndex: -1,
         backgroundColor: '#FFFAC6',
     }));
