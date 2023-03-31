@@ -65,13 +65,19 @@ const theme = createTheme({
     },
     monoSmall: {
       fontFamily: '"Space Mono", monospace',
-      fontSize: '14px',
+      fontSize: '15px',
       color: 'black',
+      [breakpoints.up('md')]: {
+        fontSize: '14px',
+      },
     },
     spaceGrotesk: {
       fontFamily: '"Space Grotesk", sans-serif',
-      fontSize: '18px',
+      fontSize: '15px',
       fontWeight: '400',
+      [breakpoints.up('md')]: {
+        fontSize: '18px',
+      },
     },
     spaceGroteskSmall: {
       fontFamily: '"Space Grotesk", sans-serif',

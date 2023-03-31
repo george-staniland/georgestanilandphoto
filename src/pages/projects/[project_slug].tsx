@@ -9,15 +9,15 @@ import Image from 'next/image';
 const ImageContainer = styled(Box, {
     label: 'project-img-container',
 })(({ theme }) => ({
-    height: '50vh',
     width: '100%',
     overflow: 'hidden',
-    marginBottom: '35px',
-    padding: '0 18px',
+    marginBottom: '12vh',
+    padding: '0 10px',
     display: 'flex',
     justifyContent: 'center',
     [theme.breakpoints.up('md')]: {
         minHeight: '700px',
+        padding: '0 18px',
         height: '81vh',
         marginBottom: '100px',
     },
@@ -98,7 +98,7 @@ const ProjectSingleImage = (props: ImgProps) => {
     )
 }
 
-interface SanityImage {
+export interface SanityImage {
     _key: string;
     asset: {
         _ref: string;

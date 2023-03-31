@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import LinkHoverAnimation from './LinkHoverAnimation';
 import { NavMetaData } from '@/pages';
-import { Box, styled, Typography, useScrollTrigger } from '@mui/material';
+import { Box, styled, Typography, useTheme, useMediaQuery } from '@mui/material';
 import { animated, useSpring, config } from '@react-spring/web';
 import { useGesture } from '@use-gesture/react';
 import Wordmark from '../public/assets/wordmark.svg';
@@ -64,7 +64,6 @@ const WordMarkWrap = styled(Box, {
 const MenuRightWrap = styled(Box, {
     label: 'menu-right-wrap',
 })(({ theme }) => ({
-    flexGrow: '1',
     display: 'flex',
     justifyContent: 'end',
     alignItems: 'center',
@@ -82,7 +81,12 @@ const MenuItemsWrap = styled(Box)(({ theme }) => ({
 }));
 
 const MenuItemWrap = styled(Box)(({ theme }) => ({
-    textAlign: 'center',
+    textAlign: 'right',
+    paddingRight: '20px',
+    [theme.breakpoints.up('md')]: {
+        textAlign: 'center',
+        paddingRight: '0',
+    },
 }));
 
 const IconWrap = styled(Box)(({ theme }) => ({
@@ -95,7 +99,9 @@ export default function Navbar(props: Props) {
     const [showMenu, setShowMenu] = React.useState(false);
     const [iconHovered, setIconHovered] = React.useState(false);
     const [wordHovered, setWordHovered] = React.useState(false);
-    const trigger = useScrollTrigger({ threshold: 42, disableHysteresis: true });
+
+    const theme = useTheme();
+    const isTablet = useMediaQuery(theme.breakpoints.up('md'));
 
     const menuSpring = useSpring({
         opacity: showMenu ? 1 : 0,
@@ -115,9 +121,21 @@ export default function Navbar(props: Props) {
 
     const MenuContainer = styled(Box)(({ theme }) => ({
         position: 'absolute',
-        top: '100%',
-        right: '-148%',
+        top: '39px',
+        right: '0',
+        height: '360px',
+        backgroundColor: '#FFFEFB',
+        width: '280px',
+        border: '2px #323232',
+        borderStyle: 'dashed',
         pointerEvents: showMenu ? 'auto' : 'none',
+        [theme.breakpoints.up('md')]: {
+            right: '-148%',
+            height: 'unset',
+            width: 'unset',
+            backgroundColor: 'unset',
+            border: 'none',
+        },
     }));
 
     const bind = useGesture({
@@ -146,7 +164,7 @@ export default function Navbar(props: Props) {
                 </Link>
             </AnimatedWordWrap>
             <MenuRightWrap>
-                {hasMetadata && <MetaDataPanel navMetaData={navMetaData} metaVisible={metaVisible} />}
+                {hasMetadata && isTablet && <MetaDataPanel navMetaData={navMetaData} metaVisible={metaVisible} />}
                 <MenuItemsWrap onClick={toggleMenu} >
                     <AnimatedIconWrap {...bind()} style={iconSpring}>
                         {showMenu ? <MenuIconOpen /> : <MenuIcon />}

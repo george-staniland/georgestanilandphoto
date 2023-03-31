@@ -97,10 +97,10 @@ export default function Project(props: Props) {
         <Link href={`/projects/${project_slug.current}`}>
             <SingleProject {...bind()}>
                 <AnimatedLeftSection style={style}>
-                    <Box marginRight={{ xs: "0", sm: "80px" }} paddingBottom={{ xs: "20px", sm: "0" }} >
+                    <Box marginRight={{ xs: "0", sm: "20px", md: "80px" }} paddingBottom={{ xs: "20px", sm: "0" }} >
                         <Typography variant="spaceGroteskSmall">(0{index})</Typography>
                     </Box>
-                    <Box maxWidth="700px" display="flex" flexDirection="column">
+                    <Box maxWidth="700px" display="flex" flexDirection="column" paddingRight={{ xs: "0", sm: "40px" }}>
                         <Typography variant="monoSmaller" paddingBottom={{ xs: "10px", sm: "50px" }} >{project_title}</Typography>
                         <Typography variant="monoSmaller">{client_or_type}</Typography>
                         <Typography variant="monoSmaller" paddingBottom={{ xs: "25px", sm: "50px" }} >{project_year}</Typography>

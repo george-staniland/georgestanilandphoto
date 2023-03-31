@@ -22,7 +22,7 @@ const FooterContainer = styled(Box, {
 }));
 
 const IconWrap = styled(Box)(({ theme }) => ({
-    width: '24px',
+    width: '18px',
     marginRight: '14px',
     position: 'relative',
     [theme.breakpoints.up('md')]: {
@@ -121,7 +121,7 @@ export default function Footer(props: Props) {
                     </LinkHoverAnimation>
                 </FooterItem>
             </Box>
-            <Box display="flex" justifyContent="flex-end" alignItems="flex-end" gridColumn={{ xs: "span 2", sm: "span 1" }}>
+            <Box display="flex" justifyContent={{ xs: 'flex-start', sm: 'flex-end' }} alignItems="flex-end" gridColumn={{ xs: "span 2", sm: "span 1" }}>
                 <FooterItem variant="spaceGroteskSmall" >
                     © George Staniland Photography 2023
                 </FooterItem>

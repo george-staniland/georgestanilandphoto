@@ -12,11 +12,13 @@ export interface NavMetaData {
 }
 
 interface Props {
-  imageGalleries: [{}];
+  homeGallery: {
+    images: {}[];
+  };
 }
 
 export default function Home(props: Props) {
-  const { imageGalleries } = props;
+  const { homeGallery } = props;
   const [navMetaData, setMetaData] = React.useState<NavMetaData>({});
   const [metaVisible, setMetaVisibile] = React.useState(false);
 
@@ -26,7 +28,7 @@ export default function Home(props: Props) {
         <title>George Staniland Photography Auckland</title>
       </Head>
       <Navbar navMetaData={navMetaData} metaVisible={metaVisible} hasMetadata />
-      <HomePageGallery gallery={imageGalleries[0]} setMetaData={setMetaData} setMetaVisible={setMetaVisibile} />
+      <HomePageGallery gallery={homeGallery} setMetaData={setMetaData} setMetaVisible={setMetaVisibile} />
       <Footer />
     </>
   );
@@ -41,10 +43,10 @@ const client = createClient({
 
 export async function getStaticProps() {
   const imageGalleries = await client.fetch('*[_type == "image_galleries" && _id == "25debf56-bfaa-47a2-8671-a85f0c1a094e" ]');
-
+  const homeGallery = imageGalleries[0];
   return {
     props: {
-      imageGalleries,
+      homeGallery,
     },
   };
 }

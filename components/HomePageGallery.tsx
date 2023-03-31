@@ -1,7 +1,10 @@
 import React from 'react';
-import { Box, styled } from '@mui/material';
+import { Box, styled, useTheme, useMediaQuery } from '@mui/material';
 import { createClient } from 'next-sanity';
+import Image from 'next/image';
 import HomePageImage from './HomePageImage';
+import { useNextSanityImage } from 'next-sanity-image';
+import { SanityImage } from '@/pages/projects/[project_slug]';
 
 const GalleryContainer = styled(Box, {
     label: 'homepage-gallery-container',
@@ -38,7 +41,7 @@ const GallerySection1Flex = styled(Box)(({ theme }) => ({
 const GallerySection2 = styled(GallerySection)(({ theme }) => ({
     [theme.breakpoints.up('sm')]: {
         columnGap: '40px',
-        rowGap: 'clamp(60px, 12vh, 300px)'
+        rowGap: '60px'
     },
 }));
 
@@ -99,15 +102,32 @@ interface Props {
     setMetaData: React.Dispatch<React.SetStateAction<{}>>;
     setMetaVisible: React.Dispatch<React.SetStateAction<boolean>>;
     gallery: {
-        images: {}[],
+        images: {
+            image: SanityImage;
+        }[],
     };
 }
 
 export default function HomePageGallery(props: Props) {
 
     const { setMetaData, setMetaVisible, gallery } = props;
-    const { images } = gallery;
+    const theme = useTheme();
+    const isTablet = useMediaQuery(theme.breakpoints.up('md'));
 
+    return (
+        <>
+            {isTablet ?
+                <DesktopGallery gallery={gallery} setMetaData={setMetaData} setMetaVisible={setMetaVisible} />
+                :
+                <MobileGallery gallery={gallery} setMetaData={setMetaData} setMetaVisible={setMetaVisible} />
+            }
+        </>
+    );
+}
+
+const DesktopGallery = (props: Props) => {
+    const { gallery, setMetaData, setMetaVisible } = props;
+    const { images } = gallery;
     return (
         <GalleryContainer>
             <GallerySection1Flex>
@@ -129,7 +149,7 @@ export default function HomePageGallery(props: Props) {
                             imageData={images[0]}
                             setMetaData={setMetaData}
                             setMetaVisible={setMetaVisible}
-                            sizes="(max-width: 768px) 100vw, 50vw"
+                            sizes="(max-width: 768px) 100vw, 56vw"
                             priority
                         />
                     </Box>
@@ -168,13 +188,14 @@ export default function HomePageGallery(props: Props) {
                 </Box>
             </GallerySection1Flex>
             <GallerySection2>
-                <SectionChild padding="11% 0">
+                <SectionChild padding="7% 0 0% 24%">
                     <HomePageImage
                         title="nicholson st door"
                         imageData={images[3]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
                         objectPosition="left"
+                        sizes="(max-width: 768px) 100vw, 47vw"
                     />
                 </SectionChild>
                 <SectionChild padding="4% 0">
@@ -183,6 +204,7 @@ export default function HomePageGallery(props: Props) {
                         imageData={images[4]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
+                        sizes="(max-width: 768px) 100vw, 51vw"
                     />
                 </SectionChild>
                 <SectionChild paddingLeft="28%">
@@ -191,6 +213,7 @@ export default function HomePageGallery(props: Props) {
                         imageData={images[5]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
+                        sizes="(max-width: 768px) 100vw, 45w"
                     />
                 </SectionChild>
                 <SectionChild padding="1% 25% 20%">
@@ -199,6 +222,7 @@ export default function HomePageGallery(props: Props) {
                         imageData={images[6]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
+                        sizes="(max-width: 768px) 100vw, 45vw"
                     />
                 </SectionChild>
             </GallerySection2>
@@ -210,6 +234,7 @@ export default function HomePageGallery(props: Props) {
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
                         objectPosition="right"
+                        sizes="(max-width: 768px) 100vw, 40vw"
                     />
                 </SectionChild>
                 <SectionChild padding="0 6%">
@@ -219,6 +244,7 @@ export default function HomePageGallery(props: Props) {
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
                         objectPosition="top"
+                        sizes="(max-width: 768px) 100vw, 55vw"
                     />
                 </SectionChild>
             </GallerySection3>
@@ -229,6 +255,7 @@ export default function HomePageGallery(props: Props) {
                         imageData={images[10]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
+                        sizes="(max-width: 768px) 100vw, 55vw"
                     />
                 </Section4Child1>
                 <SectionChild padding="0 0 0 30%">
@@ -238,6 +265,7 @@ export default function HomePageGallery(props: Props) {
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
                         objectPosition="top"
+                        sizes="(max-width: 768px) 100vw, 46vw"
                     />
 
                 </SectionChild>
@@ -247,6 +275,7 @@ export default function HomePageGallery(props: Props) {
                         imageData={images[11]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
+                        sizes="(max-width: 768px) 100vw, 50vw"
                     />
                 </SectionChild>
             </GallerySection>
@@ -258,6 +287,7 @@ export default function HomePageGallery(props: Props) {
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
                         objectPosition='top'
+                        sizes="(max-width: 768px) 100vw, 40vw"
                     />
 
                 </SectionChild>
@@ -268,6 +298,7 @@ export default function HomePageGallery(props: Props) {
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
                         objectPosition="top"
+                        sizes="(max-width: 768px) 100vw, 40vw"
                     />
                 </Section5Child2>
                 <SectionChild padding="0 2% 0 6%">
@@ -277,11 +308,103 @@ export default function HomePageGallery(props: Props) {
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
                         objectPosition="right"
+                        sizes="(max-width: 768px) 100vw, 40vw"
                     />
                 </SectionChild>
             </GallerySection5>
         </GalleryContainer >
-    );
+    )
+}
+
+const MobileGalleryContainer = styled(Box, {
+    label: 'homepage-gallery-container-mobile',
+})(({ theme }) => ({
+    padding: "0 8px",
+    marginTop: "110px",
+    marginBottom: "100px",
+    [theme.breakpoints.up('sm')]: {
+    },
+}));
+
+const ImageWrap = styled(Box)(() => ({
+    display: 'flex',
+    marginBottom: '40px',
+    padding: '0 3%'
+}));
+
+const MobileGallery = (props: Props) => {
+    const { gallery, setMetaData, setMetaVisible } = props;
+    const { images } = gallery;
+
+    return (
+        <MobileGalleryContainer>
+            <ImageWrap justifyContent="flex-end">
+                <MobileImage height="auto" width="90%" image={images[0].image} title="jono" />
+            </ImageWrap>
+            <ImageWrap justifyContent="start" >
+                <MobileImage height="auto" width="80%" image={images[1].image} title="ehan" />
+            </ImageWrap>
+            <ImageWrap justifyContent="flex-end" >
+                <MobileImage height="auto" width="90%" image={images[2].image} title="castelhill" />
+            </ImageWrap>
+            <ImageWrap justifyContent="start" >
+                <MobileImage height="auto" width="80%" image={images[3].image} title="door" />
+            </ImageWrap>
+            <ImageWrap justifyContent="center" >
+                <MobileImage height="auto" width="100%" image={images[4].image} title="garden" />
+            </ImageWrap>
+            <ImageWrap justifyContent="center" >
+                <MobileImage height="auto" width="80%" image={images[5].image} title="ampm-shoes" />
+            </ImageWrap>
+            <ImageWrap justifyContent="end" >
+                <MobileImage height="auto" width="80%" image={images[6].image} title="blackcat" />
+            </ImageWrap>
+            <ImageWrap justifyContent="start" >
+                <MobileImage height="auto" width="88%" image={images[8].image} title="flowerbed" />
+            </ImageWrap>
+            <ImageWrap justifyContent="end" >
+                <MobileImage height="auto" width="90%" image={images[7].image} title="eves" />
+            </ImageWrap>
+            <ImageWrap justifyContent="center" >
+                <MobileImage height="auto" width="100%" image={images[9].image} title="bottle" />
+            </ImageWrap>
+            <ImageWrap justifyContent="end" >
+                <MobileImage height="auto" width="80%" image={images[10].image} title="carpark" />
+            </ImageWrap>
+            <ImageWrap justifyContent="center" >
+                <MobileImage height="auto" width="80%" image={images[11].image} title="grannys" />
+            </ImageWrap>
+            <ImageWrap justifyContent="end" >
+                <MobileImage height="auto" width="80%" image={images[12].image} title="xander" />
+            </ImageWrap>
+            <ImageWrap justifyContent="start" >
+                <MobileImage height="auto" width="80%" image={images[14].image} title="orari" />
+            </ImageWrap>
+            <ImageWrap justifyContent="end" >
+                <MobileImage height="auto" width="80%" image={images[13].image} title="single-flower" />
+            </ImageWrap>
+        </MobileGalleryContainer >
+    )
+}
+
+interface MobileImageProps {
+    width: string;
+    height: string;
+    image: SanityImage;
+    title?: string;
+}
+
+const MobileImage = (props: MobileImageProps) => {
+    const { image, width, height } = props;
+    const imageProps = useNextSanityImage(client, image);
+    return (
+        <Image
+            {...imageProps}
+            style={{ height: height, width: width }}
+            alt="test"
+            sizes="100vw"
+        />
+    )
 }
 
 const client = createClient({
