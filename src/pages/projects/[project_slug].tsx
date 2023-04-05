@@ -5,6 +5,7 @@ import Navbar from 'components/Navbar';
 import { createClient } from 'next-sanity';
 import { useNextSanityImage } from 'next-sanity-image';
 import Image from 'next/image';
+import { SanityImage } from 'models/models';
 
 const ImageContainer = styled(Box, {
     label: 'project-img-container',
@@ -96,13 +97,6 @@ const ProjectSingleImage = (props: ImgProps) => {
             }
         </>
     )
-}
-
-export interface SanityImage {
-    _key: string;
-    asset: {
-        _ref: string;
-    }
 }
 
 interface Props {

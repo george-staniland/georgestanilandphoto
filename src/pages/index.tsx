@@ -4,6 +4,7 @@ import React from 'react';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import HomePageGallery from 'components/HomePageGallery';
+import { SanityImage } from 'models/models';
 
 export interface NavMetaData {
   imageTitle?: string;
@@ -13,7 +14,9 @@ export interface NavMetaData {
 
 interface Props {
   homeGallery: {
-    images: {}[];
+    images: {
+      image: SanityImage;
+    }[];
   };
 }
 

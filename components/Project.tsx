@@ -77,8 +77,6 @@ export default function Project(props: Props) {
         },
     });
 
-    console.log(project_slug)
-
     const style = useSpring({
         opacity: isHovered || smallerThanTablet ? '1' : '0',
     });

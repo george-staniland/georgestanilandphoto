@@ -4,7 +4,7 @@ import { createClient } from 'next-sanity';
 import Image from 'next/image';
 import HomePageImage from './HomePageImage';
 import { useNextSanityImage } from 'next-sanity-image';
-import { SanityImage } from '@/pages/projects/[project_slug]';
+import { SanityImage } from 'models/models';
 
 const GalleryContainer = styled(Box, {
     label: 'homepage-gallery-container',

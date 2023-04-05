@@ -3,7 +3,8 @@ import { createClient } from 'next-sanity';
 import { useHover } from '@use-gesture/react';
 import { Box, styled, useMediaQuery, useTheme } from '@mui/material';
 import Image from 'next/image';
-import Missing from '../public/assets/missing.png'
+import Missing from '../public/assets/missing.png';
+import { SanityImage } from 'models/models';
 
 const client = createClient({
     projectId: 'nimz3ndn',
@@ -30,7 +31,7 @@ interface HomePageImageProps {
     imageData: {
         altText?: string;
         imageMetaData?: {};
-        image?: {},
+        image?: SanityImage,
     },
     title?: string;
 }
