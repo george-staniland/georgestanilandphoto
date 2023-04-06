@@ -1,8 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/cms/node_modules
+/frontend/node_modules
+/sanity/node_modules
 /.pnp
 .pnp.js
 
@@ -10,11 +10,11 @@
 /coverage
 
 # next.js
-/.next/
-/out/
+frontend/.next/
+frontend/out/
 
 # production
-/build
+frontend/build
 
 # misc
 .DS_Store
