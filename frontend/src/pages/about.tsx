@@ -61,7 +61,7 @@ export default function About() {
                 </Box>
                 <Box maxWidth="450px" marginLeft={{ xs: '0', md: '170px' }}>
                     <Typography variant="body1">
-                        George Staniland is a photogapher based in Auckland New Zealand. Dolor sit amet, consectetur adipiscing elit. Faucibus at dictum metus lacus feugiat fermentum sit. Nisl dolor praesent sed varius accumsan maecenas sed eget pharetra. Ultricies fame sed mi est. Feugiat sit massa porttitor ac.
+                        George Staniland is a photographer based in Tāmaki Makaurau - Auckland. His work has been shown in spaces across Australia and New Zealand. George continues to seek new and absorbing subjects to photograph and remains engaged in personal and commissioned projects.
                     </Typography>
                 </Box>
             </AboutTextContainer>

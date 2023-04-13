@@ -172,15 +172,15 @@ export default function Navbar(props: Props) {
                     <AnimatedMenuContainer style={menuSpring}>
                         <MenuItemWrap padding="14px 0 8px" >
                             <LinkHoverAnimation>
-                                <Link href="/commissions">
-                                    <Typography variant="monoSmall">Commissions</Typography>
+                                <Link href="/personal">
+                                    <Typography variant="monoSmall">Personal</Typography>
                                 </Link>
                             </LinkHoverAnimation>
                         </MenuItemWrap>
                         <MenuItemWrap padding="8px 0" >
                             <LinkHoverAnimation>
-                                <Link href="/personal">
-                                    <Typography variant="monoSmall">Personal</Typography>
+                                <Link href="/commissions">
+                                    <Typography variant="monoSmall">Commissions</Typography>
                                 </Link>
                             </LinkHoverAnimation>
                         </MenuItemWrap>

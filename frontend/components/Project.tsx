@@ -112,7 +112,7 @@ export default function Project(props: Props) {
                             <Image
                                 src={cover_image ? urlFor(cover_image.asset._ref).quality(100).url() : Missing}
                                 fill
-                                alt="test"
+                                alt="a photo on gs website"
                                 style={{
                                     objectFit: 'cover',
                                 }}
@@ -121,11 +121,14 @@ export default function Project(props: Props) {
                         </Box>
                     }
                     {!isMobile &&
-                        <Box width="300px" position="relative">
+                        <Box position="relative" width="330px">
                             <Image
                                 {...imageProps}
-                                style={{ width: '100%', height: 'auto' }}
-                                alt="test"
+                                style={{
+                                    width: 'auto',
+                                    height: '270px',
+                                }}
+                                alt="a photo on gs website"
                                 sizes="(max-width: 800px) 100vw, 320px"
                             />
                         </Box>

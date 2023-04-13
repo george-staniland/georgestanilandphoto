@@ -90,19 +90,17 @@ export default function Footer(props: Props) {
                 {showButton && <ToTopButton />}
             </Box>
             <Box display="flex" flexDirection="column" paddingBottom={{ xs: "30px", sm: "0" }}>
-
-                <FooterItem variant="spaceGrotesk" >
-                    <LinkHoverAnimation>
-                        <Link href="/commissions">
-                            Commissions
-                        </Link>
-                    </LinkHoverAnimation>
-                </FooterItem>
-
                 <FooterItem variant="spaceGrotesk" >
                     <LinkHoverAnimation>
                         <Link href="/personal">
                             Personal
+                        </Link>
+                    </LinkHoverAnimation>
+                </FooterItem>
+                <FooterItem variant="spaceGrotesk" >
+                    <LinkHoverAnimation>
+                        <Link href="/commissions">
+                            Commissions
                         </Link>
                     </LinkHoverAnimation>
                 </FooterItem>
