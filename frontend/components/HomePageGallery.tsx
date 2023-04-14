@@ -333,16 +333,16 @@ const ImageWrap = styled(Box)(() => ({
 }));
 
 const MobileGallery = (props: Props) => {
-    const { gallery, setMetaData, setMetaVisible } = props;
+    const { gallery } = props;
     const { images } = gallery;
 
     return (
         <MobileGalleryContainer>
             <ImageWrap justifyContent="flex-end">
-                <MobileImage height="auto" width="90%" image={images[0].image} title="jono" />
+                <MobileImage height="auto" width="90%" image={images[0].image} title="jono" priority />
             </ImageWrap>
             <ImageWrap justifyContent="start" >
-                <MobileImage height="auto" width="80%" image={images[1].image} title="ehan" />
+                <MobileImage height="auto" width="80%" image={images[1].image} title="ehan" priority />
             </ImageWrap>
             <ImageWrap justifyContent="flex-end" >
                 <MobileImage height="auto" width="90%" image={images[2].image} title="castelhill" />
@@ -383,6 +383,7 @@ const MobileGallery = (props: Props) => {
             <ImageWrap justifyContent="end" >
                 <MobileImage height="auto" width="80%" image={images[13].image} title="single-flower" />
             </ImageWrap>
+
         </MobileGalleryContainer >
     )
 }
@@ -392,10 +393,11 @@ interface MobileImageProps {
     height: string;
     image: SanityImage;
     title?: string;
+    priority?: boolean;
 }
 
 const MobileImage = (props: MobileImageProps) => {
-    const { image, width, height } = props;
+    const { image, width, height, priority = false } = props;
     const imageProps = useNextSanityImage(client, image);
     return (
         <Image
@@ -403,6 +405,7 @@ const MobileImage = (props: MobileImageProps) => {
             style={{ height: height, width: width }}
             alt="test"
             sizes="100vw"
+            priority
         />
     )
 }

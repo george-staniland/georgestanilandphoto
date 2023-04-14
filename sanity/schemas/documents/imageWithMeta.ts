@@ -8,7 +8,14 @@ export const imageWithMeta = defineType ({
     defineField ({
       type: 'image',
       name: 'image',
-      title: 'Image'
+      title: 'Image',
+      options: {
+        metadata: [
+          'blurhash',   // Default: included
+          'lqip',       // Default: included
+          'palette',    // Default: included
+        ],
+      },
     }),
     defineField({
       type: 'string',
