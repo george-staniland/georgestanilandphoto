@@ -213,7 +213,7 @@ const DesktopGallery = (props: Props) => {
                         imageData={images[5]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
-                        sizes="(max-width: 768px) 100vw, 45w"
+                        sizes="(max-width: 768px) 100vw, 45vw"
                     />
                 </SectionChild>
                 <SectionChild padding="1% 25% 20%">
