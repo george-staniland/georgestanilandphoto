@@ -45,7 +45,7 @@ const client = createClient({
 });
 
 export async function getStaticProps() {
-  const imageGalleries = await client.fetch('*[_type == "image_galleries" && _id == "25debf56-bfaa-47a2-8671-a85f0c1a094e" ]');
+  const imageGalleries = await client.fetch('*[_type=="image_galleries"&&_id=="25debf56-bfaa-47a2-8671-a85f0c1a094e"]{images[]{..., image{ ..., asset->{ ..., metadata}}}}');
   const homeGallery = imageGalleries[0];
   return {
     props: {

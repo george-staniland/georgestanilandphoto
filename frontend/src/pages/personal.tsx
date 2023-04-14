@@ -6,11 +6,15 @@ import { createClient } from 'next-sanity';
 import { Box, styled } from "@mui/material"
 import { ProjectModel } from '../../models/project';
 
-const AllProjects = styled(Box, {
+export const AllProjects = styled(Box, {
     label: 'all-projects',
 })(({ theme }) => ({
+    marginBottom: '100px',
     marginTop: '120px',
     minHeight: '81vh',
+    [theme.breakpoints.up('md')]: {
+        marginBottom: '0',
+    },
 }));
 
 interface Props {

@@ -1,6 +1,7 @@
 import {defineConfig} from 'sanity'
-import {deskTool, StructureBuilder } from 'sanity/desk'
+import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
+import {media} from 'sanity-plugin-media'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 import {schemaTypes} from './schemas'
 
@@ -31,6 +32,7 @@ export default defineConfig({
               ])
           },
       }),
-      visionTool()
+      visionTool(),
+      media()
   ]
 })

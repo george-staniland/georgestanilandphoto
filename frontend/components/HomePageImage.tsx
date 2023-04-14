@@ -68,16 +68,18 @@ export default function HomePageImage(homePageImageProps: HomePageImageProps) {
     return (
         <ImageContainer {...bind(imageMetaData)} paddingTop={paddingTop} >
             <Image
-                src={image ? urlFor(image.asset._ref).quality(100).url() : Missing}
+                src={image ? urlFor(image.asset._id).quality(100).url() : Missing}
                 alt={altText}
                 fill
-                priority
+                priority={priority}
                 quality="100"
                 style={{
                     objectFit: objectFit,
                     objectPosition: isXLarge ? "center" : objectPosition,
                 }}
                 sizes={sizes}
+                placeholder='blur'
+                blurDataURL={image?.asset.metadata.lqip}
             />
         </ImageContainer>
     )

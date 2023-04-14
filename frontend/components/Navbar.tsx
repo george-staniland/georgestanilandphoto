@@ -92,6 +92,9 @@ const MenuItemWrap = styled(Box)(({ theme }) => ({
 const IconWrap = styled(Box)(({ theme }) => ({
     cursor: 'pointer',
     transformOrigin: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
 }));
 
 export default function Navbar(props: Props) {
@@ -109,8 +112,9 @@ export default function Navbar(props: Props) {
     });
 
     const iconSpring = useSpring({
-        transform: iconHovered ? 'rotate(45deg)' : 'rotate(0deg)',
+        transform: iconHovered ? 'rotate(90deg)' : 'rotate(0deg)',
         opacity: iconHovered ? '0.9' : '1',
+        config: config.wobbly,
     });
 
     const wordSpring = useSpring({
