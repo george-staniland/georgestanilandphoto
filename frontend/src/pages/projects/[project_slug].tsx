@@ -60,6 +60,8 @@ const ProjectSingleImage = (props: ImgProps) => {
                             style={{ height: '100%', width: 'auto' }}
                             alt="test"
                             sizes="(max-width: 1200px) 70vw, 97vw"
+                            placeholder='blur'
+                            blurDataURL={image.asset.metadata.lqip}
                         />
                         :
                         <Image
@@ -71,6 +73,8 @@ const ProjectSingleImage = (props: ImgProps) => {
                             }}
                             alt="test"
                             sizes="100vw"
+                            placeholder='blur'
+                            blurDataURL={image.asset.metadata.lqip}
                         />}
                 </ImageContainerFirstImage>
                 :
@@ -81,6 +85,8 @@ const ProjectSingleImage = (props: ImgProps) => {
                             style={{ height: '100%', width: 'auto' }}
                             alt="test"
                             sizes="(max-width: 1200px) 70vw, 97vw"
+                            placeholder='blur'
+                            blurDataURL={image.asset.metadata.lqip}
                         />
                         :
                         <Image
@@ -92,6 +98,8 @@ const ProjectSingleImage = (props: ImgProps) => {
                             }}
                             alt="test"
                             sizes="100vw"
+                            placeholder='blur'
+                            blurDataURL={image.asset.metadata.lqip}
                         />}
                 </ImageContainer>
             }
@@ -136,7 +144,7 @@ export async function getStaticProps(context: ProjectContext) {
     const { params } = context;
     const { project_slug } = params;
 
-    const data = await client.fetch(`*[_type == "projects" && project_slug.current == "${project_slug}"]{images}`);
+    const data = await client.fetch(`*[_type == "projects" && project_slug.current == "${project_slug}"]{images[]{ ..., asset->{ ..., metadata } }}`);
     const project = data[0];
 
     return {

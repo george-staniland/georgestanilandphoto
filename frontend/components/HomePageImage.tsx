@@ -78,8 +78,6 @@ export default function HomePageImage(homePageImageProps: HomePageImageProps) {
                     objectPosition: isXLarge ? "center" : objectPosition,
                 }}
                 sizes={sizes}
-                placeholder='blur'
-                blurDataURL={image?.asset.metadata.lqip}
             />
         </ImageContainer>
     )
