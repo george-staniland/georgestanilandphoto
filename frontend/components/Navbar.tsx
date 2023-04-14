@@ -69,7 +69,9 @@ const MenuRightWrap = styled(Box, {
     alignItems: 'center',
 }));
 
-const MenuItemsWrap = styled(Box)(({ theme }) => ({
+const MenuItemsWrap = styled(Box, {
+    label: 'menu-items-wrap',
+})(({ theme }) => ({
     width: '22px',
     marginRight: '0',
     position: 'relative',
@@ -89,7 +91,9 @@ const MenuItemWrap = styled(Box)(({ theme }) => ({
     },
 }));
 
-const IconWrap = styled(Box)(({ theme }) => ({
+const IconWrap = styled(Box, {
+    label: 'icon-wrap',
+})(({ theme }) => ({
     cursor: 'pointer',
     transformOrigin: 'center',
     display: 'flex',
