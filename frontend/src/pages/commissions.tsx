@@ -5,12 +5,7 @@ import Project from 'components/Project';
 import { createClient } from 'next-sanity';
 import { Box, styled } from "@mui/material"
 import { ProjectModel } from '../../models/project';
-
-const AllProjects = styled(Box, {
-    label: 'all-projects',
-})(({ theme }) => ({
-    marginTop: '120px',
-}));
+import { AllProjects } from './personal';
 
 interface Props {
     commissionedProjects: ProjectModel[],

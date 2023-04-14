@@ -4,7 +4,7 @@ import { Box, styled, Typography } from '@mui/material';
 import LinkHoverAnimation from './LinkHoverAnimation';
 import MenuIcon from '../public/assets/menu-icon.svg';
 import { useGesture } from '@use-gesture/react';
-import { useSpring, animated } from '@react-spring/web';
+import { useSpring, animated, config } from '@react-spring/web';
 
 const FooterContainer = styled(Box, {
     label: 'footer-container',
@@ -27,6 +27,17 @@ const IconWrap = styled(Box)(({ theme }) => ({
     position: 'relative',
     [theme.breakpoints.up('md')]: {
         width: '19px',
+    },
+}));
+
+const IconWrapSmall = styled(Box)(({ theme }) => ({
+    width: '16px',
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+        width: '17px',
     },
 }));
 
@@ -75,6 +86,34 @@ const ToTopButton = () => {
     )
 }
 
+const PlainIcon = () => {
+    const [isHovered, setHovered] = React.useState(false);
+    const spring = useSpring({
+        transform: isHovered ? 'rotate(400deg)' : 'rotate(0deg)',
+        config: config.wobbly,
+    })
+
+    const bind = useGesture({
+        onHover: ({ hovering }) => {
+            setHovered(hovering ?? false);
+        },
+    })
+
+    const Button = styled(Box)(({ theme }) => ({
+        display: 'inline-flex',
+    }));
+
+    const AButton = animated(Button);
+
+    return (
+        <AButton {...bind()} style={spring} >
+            <IconWrapSmall>
+                <MenuIcon />
+            </IconWrapSmall>
+        </AButton>
+    )
+}
+
 interface Props {
     showButton?: boolean;
 }
@@ -87,7 +126,7 @@ export default function Footer(props: Props) {
                 gridColumn={{ xs: "span 2", sm: "span 1" }}
                 paddingBottom={{ xs: "30px", sm: "0" }}
             >
-                {showButton && <ToTopButton />}
+                {showButton ? <ToTopButton /> : <PlainIcon />}
             </Box>
             <Box display="flex" flexDirection="column" paddingBottom={{ xs: "30px", sm: "0" }}>
                 <FooterItem variant="spaceGrotesk" >

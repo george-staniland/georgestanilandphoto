@@ -87,9 +87,9 @@ const theme = createTheme({
     body1: {
       fontFamily:
         '"Helvetica", "Roboto", "Arial", sans-serif',
-      fontSize: '11px',
+      fontSize: '13px',
       [breakpoints.up('md')]: {
-        fontSize: '14px',
+        fontSize: '15px',
       },
     },
   },

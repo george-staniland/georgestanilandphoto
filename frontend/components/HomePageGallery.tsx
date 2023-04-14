@@ -405,7 +405,9 @@ const MobileImage = (props: MobileImageProps) => {
             style={{ height: height, width: width }}
             alt="test"
             sizes="100vw"
-            priority
+            priority={priority}
+            placeholder='blur'
+            blurDataURL={image.asset.metadata.lqip}
         />
     )
 }

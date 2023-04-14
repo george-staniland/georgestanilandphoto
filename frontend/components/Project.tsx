@@ -24,10 +24,11 @@ const SingleProject = styled(Box, {
     display: 'flex',
     flexDirection: 'column-reverse',
     padding: '0 8px',
-    marginBottom: '30px',
+    marginBottom: '60px',
     [theme.breakpoints.up('sm')]: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginBottom: '30px',
     },
     [theme.breakpoints.up('md')]: {
         padding: '0 8vw 0 8vw',
@@ -108,7 +109,7 @@ export default function Project(props: Props) {
                 <RightSection>
                     {!isMobile && <Typography variant="spaceGroteskSmall" paddingBottom="6px">(0{index})</Typography>}
                     {isMobile &&
-                        <Box height="260px" position="relative">
+                        <Box height="280px" position="relative">
                             <Image
                                 src={cover_image ? urlFor(cover_image.asset._ref).quality(100).url() : Missing}
                                 fill
@@ -121,12 +122,12 @@ export default function Project(props: Props) {
                         </Box>
                     }
                     {!isMobile &&
-                        <Box position="relative" width="330px">
+                        <Box position="relative" width="320px">
                             <Image
                                 {...imageProps}
                                 style={{
                                     width: 'auto',
-                                    height: '270px',
+                                    height: '280px',
                                 }}
                                 alt="a photo on gs website"
                                 sizes="(max-width: 800px) 100vw, 320px"

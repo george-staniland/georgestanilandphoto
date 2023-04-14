@@ -71,7 +71,7 @@ export default function HomePageImage(homePageImageProps: HomePageImageProps) {
                 src={image ? urlFor(image.asset._id).quality(100).url() : Missing}
                 alt={altText}
                 fill
-                priority
+                priority={priority}
                 quality="100"
                 style={{
                     objectFit: objectFit,
