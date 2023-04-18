@@ -25,6 +25,9 @@ export default function Home(props: Props) {
   const [navMetaData, setMetaData] = React.useState<NavMetaData>({});
   const [metaVisible, setMetaVisibile] = React.useState(false);
 
+  //TO DO:
+  // Conditional render for HomePageGallery made need to happen here and not inside the component
+
   return (
     <>
       <Head>

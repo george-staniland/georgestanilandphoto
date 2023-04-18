@@ -11,6 +11,7 @@ const GalleryContainer = styled(Box, {
 })(({ theme }) => ({
     padding: "0 8px",
     marginTop: "110px",
+    minHeight: '300px',
     [theme.breakpoints.up('sm')]: {
         padding: "0 60px 0 30px",
         marginTop: "150px",
@@ -62,24 +63,7 @@ const SectionChild = styled(Box, {
 })(({ theme }) => ({
     position: 'relative',
     display: 'flex',
-}));
-
-const Section1Child1 = styled(SectionChild)(({ theme }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    [theme.breakpoints.up('sm')]: {
-        gridRowStart: '1',
-        gridRowEnd: '3',
-        gridColumnStart: '1',
-    },
-}));
-
-const Section1Child2 = styled(SectionChild)(({ theme }) => ({
-    [theme.breakpoints.up('sm')]: {
-        gridRowStart: '1',
-        gridRowEnd: '3',
-        gridColumnStart: '2',
-    },
+    overflow: 'hidden',
 }));
 
 const Section4Child1 = styled(SectionChild)(({ theme }) => ({
@@ -149,7 +133,7 @@ const DesktopGallery = (props: Props) => {
                             imageData={images[0]}
                             setMetaData={setMetaData}
                             setMetaVisible={setMetaVisible}
-                            sizes="(max-width: 768px) 100vw, 56vw"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                             priority
                         />
                     </Box>
@@ -165,7 +149,7 @@ const DesktopGallery = (props: Props) => {
                             imageData={images[2]}
                             setMetaData={setMetaData}
                             setMetaVisible={setMetaVisible}
-                            sizes="(max-width: 768px) 100vw, 47vw"
+                            sizes="(max-width: 768px) 100vw, 45vw"
                         />
                     </Box>
                 </Box>
@@ -180,7 +164,7 @@ const DesktopGallery = (props: Props) => {
                             imageData={images[1]}
                             setMetaData={setMetaData}
                             setMetaVisible={setMetaVisible}
-                            sizes="(max-width: 768px) 100vw, 47vw"
+                            sizes="(max-width: 768px) 100vw, 40vw"
                             objectPosition="right"
                             priority
                         />
@@ -322,7 +306,8 @@ const MobileGalleryContainer = styled(Box, {
     padding: "0 8px",
     marginTop: "110px",
     marginBottom: "100px",
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
+        display: 'none',
     },
 }));
 
