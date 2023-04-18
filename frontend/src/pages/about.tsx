@@ -1,5 +1,6 @@
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
+import Head from 'next/head';
 import LinkHoverAnimation from "components/LinkHoverAnimation";
 import { Box, styled, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
@@ -133,6 +134,10 @@ export default function About() {
     const isTablet = useMediaQuery(theme.breakpoints.up('md'));
     return (
         <>
+            <Head>
+                <title>George Staniland is a photographer based in Auckland</title>
+                <meta name="description" content="George is focused on a variety of long and short-term photography art projects. Additionally he works on commissioned work for selected clients." />
+            </Head>
             <Navbar />
             {isTablet ? <AboutDesktop /> : <AboutMobile />}
             <Footer showButton={false} />
