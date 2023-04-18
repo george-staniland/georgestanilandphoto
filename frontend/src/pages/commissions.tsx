@@ -21,7 +21,7 @@ export default function Commisions(props: Props) {
             <AllProjects>
                 {commissionedProjects.map((project, index) => {
                     return (
-                        <Project project={project} key={index} index={index} />
+                        <Project project={project} key={index} index={index} projectCategory='commissions' />
                     )
                 })}
             </AllProjects>
