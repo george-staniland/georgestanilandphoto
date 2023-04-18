@@ -29,7 +29,7 @@ export default function Commisions(props: Props) {
         <>
             <Head>
                 <title>Personal projects by photographer George Staniland</title>
-                <meta name="description" content="George is focused on a variety of long and short-term photography art projects. Additionally he works on commissioned work for selected clients." />
+                <meta name="description" content="George is focused on various long and short-term photography art projects, additionally taking on commissioned work for selected clients." />
             </Head>
             <Navbar />
             <AllProjects>

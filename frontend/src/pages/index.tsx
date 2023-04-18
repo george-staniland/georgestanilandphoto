@@ -28,8 +28,8 @@ export default function Home(props: Props) {
   return (
     <>
       <Head>
-        <title>George Staniland is a photographer based in Auckland</title>
-        <meta name="description" content="George is focused on a variety of long and short-term photography art projects. Additionally he works on commissioned work for selected clients." />
+        <title>Art and commercial photographer living in Auckland</title>
+        <meta name="description" content="George is focused on various long and short-term photography art projects, additionally taking on commissioned work for selected clients." />
       </Head>
       <Navbar navMetaData={navMetaData} metaVisible={metaVisible} hasMetadata />
       <HomePageGallery gallery={homeGallery} setMetaData={setMetaData} setMetaVisible={setMetaVisibile} />
