@@ -1,10 +1,12 @@
 import { createClient } from 'next-sanity';
 import Head from 'next/head';
+import { useTheme, useMediaQuery } from '@mui/material';
 import React from 'react';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import HomePageGallery from 'components/HomePageGallery';
 import { SanityImage } from 'models/models';
+import MobileHomePageGallery from 'components/MobileHomePageGallery';
 
 export interface NavMetaData {
   imageTitle?: string;
@@ -23,10 +25,9 @@ interface Props {
 export default function Home(props: Props) {
   const { homeGallery } = props;
   const [navMetaData, setMetaData] = React.useState<NavMetaData>({});
-  const [metaVisible, setMetaVisibile] = React.useState(false);
-
-  //TO DO:
-  // Conditional render for HomePageGallery made need to happen here and not inside the component
+  const [metaVisible, setMetaVisible] = React.useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <>
@@ -35,7 +36,10 @@ export default function Home(props: Props) {
         <meta name="description" content="George is focused on various long and short-term photography art projects, additionally taking on commissioned work for selected clients." />
       </Head>
       <Navbar navMetaData={navMetaData} metaVisible={metaVisible} hasMetadata />
-      <HomePageGallery gallery={homeGallery} setMetaData={setMetaData} setMetaVisible={setMetaVisibile} />
+      {isMobile ?
+        <MobileHomePageGallery gallery={homeGallery} /> :
+        <HomePageGallery gallery={homeGallery} setMetaData={setMetaData} setMetaVisible={setMetaVisible} />
+      }
       <Footer />
     </>
   );
