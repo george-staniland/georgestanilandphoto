@@ -9,6 +9,34 @@ import Wordmark from '../public/assets/wordmark.svg';
 import MenuIcon from '../public/assets/menu-icon.svg';
 import MenuIconOpen from '../public/assets/menu-icon-open.svg';
 
+const MenuContents = () => {
+    return (
+        <>
+            <MenuItemWrap padding="14px 0 8px" >
+                <LinkHoverAnimation>
+                    <Link href="/personal">
+                        <Typography variant="monoSmall">Personal</Typography>
+                    </Link>
+                </LinkHoverAnimation>
+            </MenuItemWrap>
+            <MenuItemWrap padding="8px 0" >
+                <LinkHoverAnimation>
+                    <Link href="/commissions">
+                        <Typography variant="monoSmall">Commissions</Typography>
+                    </Link>
+                </LinkHoverAnimation>
+            </MenuItemWrap>
+            <MenuItemWrap padding="8px 0" >
+                <LinkHoverAnimation>
+                    <Link href="/about">
+                        <Typography variant="monoSmall">About</Typography>
+                    </Link>
+                </LinkHoverAnimation>
+            </MenuItemWrap>
+        </>
+    )
+}
+
 interface Props {
     navMetaData?: NavMetaData;
     hasMetadata?: boolean;
@@ -94,7 +122,9 @@ const MenuItemWrap = styled(Box)(({ theme }) => ({
 const IconWrap = styled(Box, {
     label: 'icon-wrap',
 })(({ theme }) => ({
+    zIndex: 5,
     cursor: 'pointer',
+    position: 'relative',
     transformOrigin: 'center',
     display: 'flex',
     justifyContent: 'center',
@@ -113,6 +143,11 @@ export default function Navbar(props: Props) {
     const menuSpring = useSpring({
         opacity: showMenu ? 1 : 0,
         config: config.stiff,
+    });
+
+    const mobMenuSpring = useSpring({
+        right: showMenu ? '0' : '-75%',
+        config: config.default,
     });
 
     const iconSpring = useSpring({
@@ -146,6 +181,20 @@ export default function Navbar(props: Props) {
         },
     }));
 
+    const MobileMenuContainer = styled(Box)(({ theme }) => ({
+        position: 'fixed',
+        height: '100vh',
+        width: '72vw',
+        minWidth: '150px',
+        maxWidth: '400px',
+        paddingTop: '95px',
+        top: 0,
+        right: 0,
+        backgroundColor: '#FFFEFB',
+        pointerEvents: showMenu ? 'auto' : 'none',
+        boxShadow: 'rgba(17, 12, 46, 0.15) 0px 48px 100px 0px',
+    }));
+
     const bind = useGesture({
         onHover: ({ hovering }) => {
             setIconHovered(hovering ?? false);
@@ -159,6 +208,7 @@ export default function Navbar(props: Props) {
     });
 
     const AnimatedMenuContainer = animated(MenuContainer);
+    const AMobileMenuContainer = animated(MobileMenuContainer);
     const AnimatedIconWrap = animated(IconWrap);
     const AnimatedWordWrap = animated(WordMarkWrap);
 
@@ -177,29 +227,17 @@ export default function Navbar(props: Props) {
                     <AnimatedIconWrap {...bind()} style={iconSpring}>
                         {showMenu ? <MenuIconOpen /> : <MenuIcon />}
                     </AnimatedIconWrap>
-                    <AnimatedMenuContainer style={menuSpring}>
-                        <MenuItemWrap padding="14px 0 8px" >
-                            <LinkHoverAnimation>
-                                <Link href="/personal">
-                                    <Typography variant="monoSmall">Personal</Typography>
-                                </Link>
-                            </LinkHoverAnimation>
-                        </MenuItemWrap>
-                        <MenuItemWrap padding="8px 0" >
-                            <LinkHoverAnimation>
-                                <Link href="/commissions">
-                                    <Typography variant="monoSmall">Commissions</Typography>
-                                </Link>
-                            </LinkHoverAnimation>
-                        </MenuItemWrap>
-                        <MenuItemWrap padding="8px 0" >
-                            <LinkHoverAnimation>
-                                <Link href="/about">
-                                    <Typography variant="monoSmall">About</Typography>
-                                </Link>
-                            </LinkHoverAnimation>
-                        </MenuItemWrap>
-                    </AnimatedMenuContainer>
+                    {isTablet ?
+                        <AnimatedMenuContainer style={menuSpring}>
+                            <MenuContents />
+                        </AnimatedMenuContainer>
+                        :
+                        <AMobileMenuContainer
+                            style={mobMenuSpring}
+                        >
+                            <MenuContents />
+                        </AMobileMenuContainer>
+                    }
                 </MenuItemsWrap>
             </MenuRightWrap>
         </NavBarContainer>

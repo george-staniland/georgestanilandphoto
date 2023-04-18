@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
 import Project from 'components/Project';
@@ -17,11 +18,15 @@ export default function Commisions(props: Props) {
 
     return (
         <>
+            <Head>
+                <title>Commissioned projects by photographer George Staniland</title>
+                <meta name="description" content="George is focused on a variety of long and short-term photography art projects. Additionally he works on commissioned work for selected clients." />
+            </Head>
             <Navbar />
             <AllProjects>
                 {commissionedProjects.map((project, index) => {
                     return (
-                        <Project project={project} key={index} index={index} />
+                        <Project project={project} key={index} index={index} projectCategory='commissions' />
                     )
                 })}
             </AllProjects>

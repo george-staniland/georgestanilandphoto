@@ -59,11 +59,12 @@ const RightSection = styled(Box, {
 interface Props {
     project: ProjectModel,
     index: number;
+    projectCategory: string;
 }
 
 export default function Project(props: Props) {
     let { index } = props;
-    const { project } = props;
+    const { project, projectCategory } = props;
     const { project_title, project_year, cover_image, description, project_slug, client_or_type } = project;
     const [isHovered, setHovered] = React.useState(false);
     const theme = useTheme();
@@ -93,7 +94,7 @@ export default function Project(props: Props) {
     const imageProps = useNextSanityImage(client, cover_image);
 
     return (
-        <Link href={`/projects/${project_slug.current}`}>
+        <Link href={`/${projectCategory}/${project_slug.current}`}>
             <SingleProject {...bind()}>
                 <AnimatedLeftSection style={style}>
                     <Box marginRight={{ xs: "0", sm: "20px", md: "80px" }} paddingBottom={{ xs: "20px", sm: "0" }} >

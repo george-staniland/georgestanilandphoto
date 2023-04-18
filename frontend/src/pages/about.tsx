@@ -1,5 +1,6 @@
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
+import Head from 'next/head';
 import LinkHoverAnimation from "components/LinkHoverAnimation";
 import { Box, styled, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
@@ -41,7 +42,7 @@ const LargeText = styled('a')(({ theme }) => ({
 
 const Bio = () => {
     return (
-        <Typography variant="body1">George Staniland is a photographer based in Tāmaki Makaurau - Auckland. His work has been shown in spaces across Australia and New Zealand. George continues to seek new and absorbing subjects to photograph and remains engaged in personal and commissioned projects.</Typography>
+        <Typography variant="body1">George Staniland is a photographer based in Tāmaki Makaurau - Auckland. His work has been shown in galleries across New Zealand and Australia. He continues to seek new and absorbing subjects to photograph while taking on selected commissioned projects.</Typography>
     )
 }
 
@@ -133,6 +134,10 @@ export default function About() {
     const isTablet = useMediaQuery(theme.breakpoints.up('md'));
     return (
         <>
+            <Head>
+                <title>George Staniland is a photographer based in Auckland</title>
+                <meta name="description" content="George is focused on a variety of long and short-term photography art projects. Additionally he works on commissioned work for selected clients." />
+            </Head>
             <Navbar />
             {isTablet ? <AboutDesktop /> : <AboutMobile />}
             <Footer showButton={false} />

@@ -195,7 +195,7 @@ const DesktopGallery = (props: Props) => {
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
                         objectPosition="left"
-                        sizes="(max-width: 768px) 100vw, 47vw"
+                        sizes="(max-width: 768px) 100vw, 36vw"
                     />
                 </SectionChild>
                 <SectionChild padding="4% 0">
@@ -222,7 +222,7 @@ const DesktopGallery = (props: Props) => {
                         imageData={images[6]}
                         setMetaData={setMetaData}
                         setMetaVisible={setMetaVisible}
-                        sizes="(max-width: 768px) 100vw, 45vw"
+                        sizes="(max-width: 768px) 100vw, 40vw"
                     />
                 </SectionChild>
             </GallerySection2>
@@ -339,31 +339,31 @@ const MobileGallery = (props: Props) => {
     return (
         <MobileGalleryContainer>
             <ImageWrap justifyContent="flex-end">
-                <MobileImage height="auto" width="90%" image={images[0].image} title="jono" priority />
+                <MobileImage height="auto" width="92%" image={images[4].image} priority title="garden" />
             </ImageWrap>
-            <ImageWrap justifyContent="start" >
-                <MobileImage height="auto" width="80%" image={images[1].image} title="ehan" priority />
+            <ImageWrap justifyContent="start" ml="6px" >
+                <MobileImage height="auto" width="90%" image={images[3].image} priority title="door" />
             </ImageWrap>
             <ImageWrap justifyContent="flex-end" >
                 <MobileImage height="auto" width="90%" image={images[2].image} title="castelhill" />
             </ImageWrap>
             <ImageWrap justifyContent="start" >
-                <MobileImage height="auto" width="80%" image={images[3].image} title="door" />
+                <MobileImage height="auto" width="96%" image={images[0].image} title="jono" />
+            </ImageWrap>
+            <ImageWrap justifyContent="right" >
+                <MobileImage height="auto" width="87%" image={images[1].image} title="ehan" />
             </ImageWrap>
             <ImageWrap justifyContent="center" >
-                <MobileImage height="auto" width="100%" image={images[4].image} title="garden" />
-            </ImageWrap>
-            <ImageWrap justifyContent="center" >
-                <MobileImage height="auto" width="80%" image={images[5].image} title="ampm-shoes" />
+                <MobileImage height="auto" width="90%" image={images[5].image} title="ampm-shoes" />
             </ImageWrap>
             <ImageWrap justifyContent="end" >
                 <MobileImage height="auto" width="80%" image={images[6].image} title="blackcat" />
             </ImageWrap>
-            <ImageWrap justifyContent="start" >
-                <MobileImage height="auto" width="88%" image={images[8].image} title="flowerbed" />
+            <ImageWrap justifyContent="center" >
+                <MobileImage height="auto" width="98%" image={images[8].image} title="flowerbed" />
             </ImageWrap>
-            <ImageWrap justifyContent="end" >
-                <MobileImage height="auto" width="90%" image={images[7].image} title="eves" />
+            <ImageWrap justifyContent="center" >
+                <MobileImage height="auto" width="99%" image={images[7].image} title="eves" />
             </ImageWrap>
             <ImageWrap justifyContent="center" >
                 <MobileImage height="auto" width="100%" image={images[9].image} title="bottle" />
@@ -371,16 +371,16 @@ const MobileGallery = (props: Props) => {
             <ImageWrap justifyContent="end" >
                 <MobileImage height="auto" width="80%" image={images[10].image} title="carpark" />
             </ImageWrap>
+            <ImageWrap justifyContent="left" >
+                <MobileImage height="auto" width="96%" image={images[11].image} title="grannys" />
+            </ImageWrap>
+            <ImageWrap justifyContent="end" >
+                <MobileImage height="auto" width="90%" image={images[12].image} title="xander" />
+            </ImageWrap>
             <ImageWrap justifyContent="center" >
-                <MobileImage height="auto" width="80%" image={images[11].image} title="grannys" />
+                <MobileImage height="auto" width="100%" image={images[14].image} title="orari" />
             </ImageWrap>
-            <ImageWrap justifyContent="end" >
-                <MobileImage height="auto" width="80%" image={images[12].image} title="xander" />
-            </ImageWrap>
-            <ImageWrap justifyContent="start" >
-                <MobileImage height="auto" width="80%" image={images[14].image} title="orari" />
-            </ImageWrap>
-            <ImageWrap justifyContent="end" >
+            <ImageWrap justifyContent="center" >
                 <MobileImage height="auto" width="80%" image={images[13].image} title="single-flower" />
             </ImageWrap>
 

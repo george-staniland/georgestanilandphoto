@@ -7,6 +7,8 @@ import { useNextSanityImage } from 'next-sanity-image';
 import Image from 'next/image';
 import { SanityImage } from 'models/models';
 
+//To Do: Both dynamic routes should use the same components
+
 const ImageContainer = styled(Box, {
     label: 'project-img-container',
 })(({ theme }) => ({
@@ -122,7 +124,7 @@ const Project = (props: Props) => {
             <Box marginTop="120px" marginBottom={{ xs: "30px", md: "120px" }}>
                 {images.map((image, index) => <ProjectSingleImage image={image} key={index} index={index} />)}
             </Box>
-            <Footer />
+            <Footer showButton={false} showBackButton={true} linkTitle='back to commissions' backLink='/commissions' />
         </>
     )
 }
