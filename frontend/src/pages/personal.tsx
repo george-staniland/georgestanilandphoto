@@ -28,7 +28,7 @@ export default function Commisions(props: Props) {
     return (
         <>
             <Head>
-                <title>Personal projects by photographer George Staniland</title>
+                <title>Personal projects by New Zealand photographer George Staniland</title>
                 <meta name="description" content="George is focused on various long and short-term photography art projects, additionally taking on commissioned work for selected clients." />
             </Head>
             <Navbar />

@@ -27,8 +27,11 @@ const GallerySection = styled(Box, {
     [theme.breakpoints.up('sm')]: {
         height: 'unset',
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gridAutoRows: 'clamp(400px, 60vh, 3000px)',
+        gridAutoRows: 'clamp(400px, 40vh, 3000px)',
         gap: '40px',
+    },
+    [theme.breakpoints.up('xl')]: {
+        gridAutoRows: 'clamp(400px, 60vh, 3000px)',
     },
 }));
 
@@ -44,13 +47,13 @@ const GallerySection2 = styled(GallerySection)(({ theme }) => ({
 }));
 
 const GallerySection3 = styled(GallerySection)(({ theme }) => ({
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('xl')]: {
         gridAutoRows: 'clamp(400px, 85vh, 3000px)',
     },
 }));
 
 const GallerySection5 = styled(GallerySection)(({ theme }) => ({
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('xl')]: {
         gridAutoRows: 'clamp(400px, 68vh, 3000px)',
     },
 }));
@@ -102,16 +105,16 @@ const DesktopGallery = (props: Props) => {
     const { images } = gallery;
     return (
         <GalleryContainer>
-            <GallerySection1Flex>
+            <GallerySection1Flex >
                 <Box
-                    flexGrow="1"
+                    width="50%"
                     display="flex"
                     alignItems="center"
                     flexDirection="column"
                 >
                     <Box
-                        height={{ xs: "60vh", lg: "70vh" }}
-                        minHeight={{ xs: "300px", lg: "610px" }}
+                        height={{ xs: "50vh", xl: "70vh" }}
+                        minHeight={{ xs: "300px", xl: "610px" }}
                         paddingRight={{ xs: "15px", xl: "0" }}
                         width="100%"
                         display="flex"
@@ -126,9 +129,9 @@ const DesktopGallery = (props: Props) => {
                         />
                     </Box>
                     <Box
-                        height={{ xs: "50vh", lg: "65vh" }}
-                        minHeight={{ xs: "300px", lg: "550px" }}
-                        marginTop={{ xs: "5vh", lg: "8vh" }}
+                        height={{ xs: "40vh", xl: "65vh" }}
+                        minHeight={{ xs: "300px", xl: "550px" }}
+                        marginTop={{ xs: "0", xl: "8vh" }}
                         width="88%"
                         display="flex"
                     >
@@ -141,11 +144,12 @@ const DesktopGallery = (props: Props) => {
                         />
                     </Box>
                 </Box>
-                <Box flexGrow="1" paddingTop="20%" >
+                <Box width="50%" paddingTop="20%" paddingLeft="4vw" >
                     <Box
-                        height={{ xs: "60vh", lg: "80vh" }}
-                        minHeight={{ xs: "300px", lg: "550px" }}
+                        height={{ xs: "50vh", xl: "80vh" }}
+                        minHeight={{ xs: "300px", xl: "550px" }}
                         display="flex"
+
                     >
                         <HomePageImage
                             title="eugene"
@@ -154,7 +158,6 @@ const DesktopGallery = (props: Props) => {
                             setMetaVisible={setMetaVisible}
                             sizes="(max-width: 768px) 100vw, 40vw"
                             objectPosition="right"
-                            priority
                         />
                     </Box>
                 </Box>
@@ -199,7 +202,7 @@ const DesktopGallery = (props: Props) => {
                 </SectionChild>
             </GallerySection2>
             <GallerySection3>
-                <SectionChild padding="30% 10% 0 0">
+                <SectionChild padding={{ xs: '16% 10% 0 0', xl: '30% 10% 0 0' }}>
                     <HomePageImage
                         title="Eve's fireplace"
                         imageData={images[7]}
