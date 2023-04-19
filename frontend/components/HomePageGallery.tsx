@@ -131,7 +131,7 @@ const DesktopGallery = (props: Props) => {
                     <Box
                         height={{ xs: "40vh", xl: "65vh" }}
                         minHeight={{ xs: "300px", xl: "550px" }}
-                        marginTop={{ xs: "0", xl: "8vh" }}
+                        marginTop={{ xs: "20px", xl: "8vh" }}
                         width="88%"
                         display="flex"
                     >

@@ -73,7 +73,7 @@ const NavBarContainer = styled(Box, {
     width: "100%",
     top: "0",
     zIndex: '10',
-    padding: "0 8px",
+    padding: "0 11px",
     [theme.breakpoints.up('md')]: {
         padding: "0 60px 0 30px",
     },
@@ -82,8 +82,10 @@ const NavBarContainer = styled(Box, {
 const WordMarkWrap = styled(Box, {
     label: 'wordmark-wrap',
 })(({ theme }) => ({
-    width: '70%',
+    width: '65%',
     maxWidth: '330px',
+    position: 'relative',
+    zIndex: 1,
     [theme.breakpoints.up('md')]: {
         width: '330px',
     },
@@ -100,13 +102,13 @@ const MenuRightWrap = styled(Box, {
 const MenuItemsWrap = styled(Box, {
     label: 'menu-items-wrap',
 })(({ theme }) => ({
-    width: '22px',
-    marginRight: '0',
+    width: '40px',
+    paddingLeft: '20px',
     position: 'relative',
     overflow: 'visible',
     [theme.breakpoints.up('md')]: {
-        width: '24px',
-        marginRight: '0',
+        width: '40px',
+        paddingLeft: '16px',
     },
 }));
 
@@ -173,7 +175,7 @@ export default function Navbar(props: Props) {
         borderStyle: 'dashed',
         pointerEvents: showMenu ? 'auto' : 'none',
         [theme.breakpoints.up('md')]: {
-            right: '-148%',
+            right: '-92%',
             height: 'unset',
             width: 'unset',
             backgroundColor: 'unset',
