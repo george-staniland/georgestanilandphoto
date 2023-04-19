@@ -35,7 +35,6 @@ export default function Commisions(props: Props) {
     )
 }
 
-// TO DO: use tokens here
 const client = createClient({
     projectId: 'nimz3ndn',
     dataset: 'production',

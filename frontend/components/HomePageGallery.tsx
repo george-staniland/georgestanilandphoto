@@ -131,7 +131,7 @@ const DesktopGallery = (props: Props) => {
                     <Box
                         height={{ xs: "40vh", xl: "65vh" }}
                         minHeight={{ xs: "300px", xl: "550px" }}
-                        marginTop={{ xs: "20px", xl: "8vh" }}
+                        marginTop={{ xs: "50px", lg: '0px', xl: "8vh" }}
                         width="88%"
                         display="flex"
                     >
@@ -144,12 +144,11 @@ const DesktopGallery = (props: Props) => {
                         />
                     </Box>
                 </Box>
-                <Box width="50%" paddingTop="20%" paddingLeft="4vw" >
+                <Box width="50%" paddingTop="20%" paddingLeft={{ xs: '20px', xl: '4vw' }} >
                     <Box
-                        height={{ xs: "50vh", xl: "80vh" }}
+                        height={{ xs: "50vh", md: '61vh', xl: "80vh" }}
                         minHeight={{ xs: "300px", xl: "550px" }}
                         display="flex"
-
                     >
                         <HomePageImage
                             title="eugene"

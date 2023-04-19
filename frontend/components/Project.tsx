@@ -68,7 +68,7 @@ export default function Project(props: Props) {
     const { project_title, project_year, cover_image, description, project_slug, client_or_type } = project;
     const [isHovered, setHovered] = React.useState(false);
     const theme = useTheme();
-    const smallerThanTablet = useMediaQuery(theme.breakpoints.down('md'));
+    const smallerThanTablet = useMediaQuery(theme.breakpoints.down('lg'));
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     index = index + 1;
