@@ -136,7 +136,7 @@ export default function About() {
     return (
         <>
             <Head>
-                <title>New Zealand based photographer, working on personal and commissioned projects.</title>
+                <title>George Staniland - About</title>
                 <meta name="description" content="George is focused on various long and short-term photography art projects, additionally taking on commissioned work for selected clients." />
             </Head>
             <Navbar />
