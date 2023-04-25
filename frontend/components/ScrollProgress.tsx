@@ -13,10 +13,16 @@ const ScrollProgress = (props: Props) => {
 
     React.useEffect(() => {
         const updatePosition = () => {
-            if (window.pageYOffset > 2500) {
-                setShowBtn(true)
+            const windowHeight = window.document.body.offsetHeight;
+            const scrollPosition = window.pageYOffset;
+            console.log(scrollPosition);
+            console.log(windowHeight);
+            if (scrollPosition > windowHeight - 1200) {
+                setShowBtn(false);
+            } else if (scrollPosition > 3000) {
+                setShowBtn(true);
             } else {
-                setShowBtn(false)
+                setShowBtn(false);
             }
         };
         window.addEventListener('scroll', updatePosition);
@@ -28,7 +34,7 @@ const ScrollProgress = (props: Props) => {
     })(({ theme }) => ({
         position: 'fixed',
         right: '5px',
-        bottom: '5px',
+        bottom: '16px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
