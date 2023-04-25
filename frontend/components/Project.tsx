@@ -8,7 +8,6 @@ import { createClient } from 'next-sanity';
 import { useNextSanityImage } from 'next-sanity-image';
 import { useSpring, animated } from "@react-spring/web";
 import Missing from '../public/assets/missing.png'
-import Landscape from "../public/assets/landscape-test.jpg";
 import { ProjectModel } from "models/project";
 
 const client = createClient({
@@ -31,7 +30,10 @@ const SingleProject = styled(Box, {
         marginBottom: '30px',
     },
     [theme.breakpoints.up('md')]: {
-        padding: '0 8vw 0 8vw',
+        padding: '0 100px 0 50px',
+    },
+    [theme.breakpoints.up('xxl')]: {
+        padding: '0 6vw 0 8vw',
     },
 }));
 
@@ -110,7 +112,7 @@ export default function Project(props: Props) {
                 <RightSection>
                     {!isMobile && <Typography variant="spaceGroteskSmall" paddingBottom="6px">(0{index})</Typography>}
                     {isMobile &&
-                        <Box height="280px" position="relative">
+                        <Box position="relative" sx={{ aspectRatio: "7/6" }}>
                             <Image
                                 src={cover_image ? urlFor(cover_image.asset._ref).quality(100).url() : Missing}
                                 fill
@@ -123,15 +125,18 @@ export default function Project(props: Props) {
                         </Box>
                     }
                     {!isMobile &&
-                        <Box position="relative" width="320px">
+                        <Box position="relative">
                             <Image
                                 {...imageProps}
                                 style={{
-                                    width: 'auto',
-                                    height: '280px',
+                                    width: '300px',
+                                    height: 'auto',
+                                    maxHeight: '360px',
+                                    objectFit: 'cover',
+                                    objectPosition: 'center',
                                 }}
                                 alt="a photo on gs website"
-                                sizes="(max-width: 800px) 100vw, 320px"
+                                sizes="(max-width: 600px) 100vw, 300px"
                             />
                         </Box>
 

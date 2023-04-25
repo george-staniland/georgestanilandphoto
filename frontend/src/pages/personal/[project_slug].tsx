@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, styled, useMediaQuery, useTheme } from "@mui/material"
 import Footer from 'components/Footer';
 import Navbar from 'components/Navbar';
+import ScrollProgress from 'components/ScrollProgress';
 import { createClient } from 'next-sanity';
 import { useNextSanityImage } from 'next-sanity-image';
 import Image from 'next/image';
@@ -118,11 +119,13 @@ const Project = (props: Props) => {
     const { images } = project;
     return (
         <>
-            <Navbar />
-            <Box marginTop="120px" marginBottom={{ xs: "30px", md: "120px" }}>
-                {images.map((image, index) => <ProjectSingleImage image={image} key={index} index={index} />)}
-            </Box>
-            <Footer showButton={false} showBackButton={true} linkTitle='back to projects' backLink='/personal' />
+            <ScrollProgress>
+                <Navbar />
+                <Box marginTop="120px" marginBottom={{ xs: "30px", md: "120px" }}>
+                    {images.map((image, index) => <ProjectSingleImage image={image} key={index} index={index} />)}
+                </Box>
+                <Footer showButton={false} showBackButton={true} linkTitle='back to projects' backLink='/personal' />
+            </ScrollProgress>
         </>
     )
 }

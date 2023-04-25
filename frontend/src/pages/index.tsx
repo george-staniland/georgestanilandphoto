@@ -4,6 +4,7 @@ import { useTheme, useMediaQuery } from '@mui/material';
 import React from 'react';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
+import ScrollProgress from 'components/ScrollProgress';
 import HomePageGallery from 'components/HomePageGallery';
 import { SanityImage } from 'models/models';
 import MobileHomePageGallery from 'components/MobileHomePageGallery';
@@ -35,12 +36,14 @@ export default function Home(props: Props) {
         <title>George Staniland - New Zealand based photographer</title>
         <meta name="description" content="George is focused on various long and short-term photography art projects, taking on commissioned work for selected clients." />
       </Head>
-      <Navbar navMetaData={navMetaData} metaVisible={metaVisible} hasMetadata />
-      {isMobile ?
-        <MobileHomePageGallery gallery={homeGallery} /> :
-        <HomePageGallery gallery={homeGallery} setMetaData={setMetaData} setMetaVisible={setMetaVisible} />
-      }
-      <Footer />
+      <ScrollProgress>
+        <Navbar navMetaData={navMetaData} metaVisible={metaVisible} hasMetadata />
+        {isMobile ?
+          <MobileHomePageGallery gallery={homeGallery} /> :
+          <HomePageGallery gallery={homeGallery} setMetaData={setMetaData} setMetaVisible={setMetaVisible} />
+        }
+        <Footer />
+      </ScrollProgress>
     </>
   );
 }
