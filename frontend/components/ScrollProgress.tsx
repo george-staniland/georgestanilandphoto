@@ -15,8 +15,6 @@ const ScrollProgress = (props: Props) => {
         const updatePosition = () => {
             const windowHeight = window.document.body.offsetHeight;
             const scrollPosition = window.pageYOffset;
-            console.log(scrollPosition);
-            console.log(windowHeight);
             if (scrollPosition > windowHeight - 1200) {
                 setShowBtn(false);
             } else if (scrollPosition > 3000) {
