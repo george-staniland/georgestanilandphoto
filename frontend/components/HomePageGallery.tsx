@@ -113,7 +113,6 @@ const DesktopGallery = (props: Props) => {
                     flexDirection="column"
                 >
                     <Box
-                        height={{ xs: "50vh", xl: "70vh" }}
                         minHeight={{ xs: "300px", xl: "610px" }}
                         paddingRight={{ xs: "15px", xl: "0" }}
                         width="100%"
@@ -125,13 +124,14 @@ const DesktopGallery = (props: Props) => {
                             setMetaData={setMetaData}
                             setMetaVisible={setMetaVisible}
                             sizes="(max-width: 768px) 100vw, 50vw"
+                            paddingTop='85.7%'
                             priority
                         />
                     </Box>
                     <Box
                         height={{ xs: "40vh", xl: "65vh" }}
                         minHeight={{ xs: "300px", xl: "550px" }}
-                        marginTop={{ xs: "50px", lg: '0px', xl: "8vh" }}
+                        marginTop={{ xs: "50px", lg: '10px', xl: "8vh" }}
                         width="88%"
                         display="flex"
                     >

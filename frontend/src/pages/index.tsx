@@ -39,7 +39,8 @@ export default function Home(props: Props) {
       <ScrollProgress>
         <Navbar navMetaData={navMetaData} metaVisible={metaVisible} hasMetadata />
         {isMobile ?
-          <MobileHomePageGallery gallery={homeGallery} /> :
+          <MobileHomePageGallery gallery={homeGallery} />
+          :
           <HomePageGallery gallery={homeGallery} setMetaData={setMetaData} setMetaVisible={setMetaVisible} />
         }
         <Footer />
