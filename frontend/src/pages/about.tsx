@@ -5,7 +5,6 @@ import LinkHoverAnimation from "components/LinkHoverAnimation";
 import { Box, styled, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "next/image";
 import Jono from '../../public/assets/jono.jpg';
-import { use } from "react";
 
 const AboutTextContainer = styled(Box, {
     label: 'about-text-container',
@@ -86,6 +85,8 @@ const AboutDesktop = () => {
                             objectFit: 'contain',
                         }}
                         placeholder="blur"
+                        sizes="91vw"
+                        priority
                     />
 
                 </Box>
