@@ -87,7 +87,7 @@ const WordMarkWrap = styled(Box, {
     position: 'relative',
     zIndex: 1,
     [theme.breakpoints.up('md')]: {
-        width: '330px',
+        width: '325px',
     },
 }));
 

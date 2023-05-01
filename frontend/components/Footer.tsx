@@ -92,6 +92,10 @@ const ToTopButton = () => {
         paddingBottom: '35px',
         [theme.breakpoints.up('sm')]: {
             width: 'auto',
+            marginTop: '-3px',
+        },
+        [theme.breakpoints.up('md')]: {
+            marginTop: '-3px',
         },
     }));
 
@@ -145,6 +149,10 @@ const BackButton = (props: BackButtonProps) => {
         paddingBottom: '35px',
         [theme.breakpoints.up('sm')]: {
             width: 'auto',
+            marginTop: '-3px',
+        },
+        [theme.breakpoints.up('md')]: {
+            marginTop: '-4px',
         },
     }));
 
