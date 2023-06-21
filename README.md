@@ -1,6 +1,6 @@
 # Photography portfolio built with NextJS
 
-Desgin by [C-CO Studio](https://www.c-co.studio/), Melbourne.
+Design by [C-CO Studio](https://www.c-co.studio/), Melbourne.
 
 ## Tools and Systems
 
