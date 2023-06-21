@@ -39,21 +39,14 @@ interface ImgProps {
 }
 
 const ProjectSingleImage = (props: ImgProps) => {
-    const [isFirst, setIsFirst] = React.useState(false);
     const { image, index } = props;
     const imageProps = useNextSanityImage(client, image);
     const theme = useTheme();
     const isTablet = useMediaQuery(theme.breakpoints.up('md'));
 
-    React.useEffect(() => {
-        if (index === 0) {
-            setIsFirst(true);
-        }
-    }, [index]);
-
     return (
         <>
-            {isFirst ?
+            {index === 0 ?
                 <ImageContainerFirstImage>
                     {isTablet ?
                         <Image
