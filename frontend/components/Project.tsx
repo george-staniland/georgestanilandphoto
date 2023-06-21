@@ -44,6 +44,7 @@ const LeftSection = styled(Box, {
     flexDirection: 'column',
     [theme.breakpoints.up('sm')]: {
         flexDirection: 'row',
+        marginTop: '-2px',
     },
 }));
 
@@ -109,7 +110,7 @@ export default function Project(props: Props) {
                         <Typography variant="monoSmaller" >{description}</Typography>
                     </Box>
                 </AnimatedLeftSection>
-                <RightSection>
+                <RightSection >
                     {!isMobile && <Typography variant="spaceGroteskSmall" paddingBottom="6px">(0{index})</Typography>}
                     {isMobile &&
                         <Box position="relative" sx={{ aspectRatio: "7/6" }}>

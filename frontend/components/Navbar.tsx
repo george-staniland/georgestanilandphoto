@@ -48,7 +48,6 @@ const MetaDataPanel = (props: Props) => {
 
     const spring = useSpring({
         opacity: metaVisible ? 1 : 0,
-        backgroundColor: metaVisible ? '#ffffff' : '#ffffff00',
         config: config.stiff,
     });
 
