@@ -34,7 +34,7 @@ export default function Home(props: Props) {
     <>
       <Head>
         <title>George Staniland - New Zealand based photographer</title>
-        <meta name="description" content="George is focused on various long and short-term photography art projects, taking on commissioned work for selected clients." />
+        <meta name="description" content="Focused on various long and short-term photography art projects, and taking on commissioned work for selected clients." />
       </Head>
       <ScrollProgress>
         <Navbar navMetaData={navMetaData} metaVisible={metaVisible} hasMetadata />
