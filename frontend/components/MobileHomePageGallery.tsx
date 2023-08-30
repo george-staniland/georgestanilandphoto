@@ -8,7 +8,7 @@ import { SanityImage } from 'models/models';
 const MobileGalleryContainer = styled(Box, {
     label: 'homepage-gallery-container-mobile',
 })(({ theme }) => ({
-    padding: "0 8px",
+    padding: "0",
     marginTop: "110px",
     marginBottom: "100px",
     [theme.breakpoints.up('md')]: {
@@ -18,8 +18,9 @@ const MobileGalleryContainer = styled(Box, {
 
 const ImageWrap = styled(Box)(() => ({
     display: 'flex',
+    justifyContent: 'center',
     marginBottom: '40px',
-    padding: '0 3%'
+    padding: '0 11px'
 }));
 
 
@@ -46,49 +47,49 @@ const MobileGallery = (props: Props) => {
 
     return (
         <MobileGalleryContainer>
-            <ImageWrap justifyContent="flex-end">
+            <ImageWrap>
                 <MobileImage height="auto" width="92%" image={images[4].image} priority title="garden" />
             </ImageWrap>
-            <ImageWrap justifyContent="start" ml="6px" >
+            <ImageWrap>
                 <MobileImage height="auto" width="90%" image={images[3].image} priority title="door" />
             </ImageWrap>
-            <ImageWrap justifyContent="flex-end" >
+            <ImageWrap>
                 <MobileImage height="auto" width="90%" image={images[2].image} title="castelhill" />
             </ImageWrap>
-            <ImageWrap justifyContent="start" >
+            <ImageWrap>
                 <MobileImage height="auto" width="96%" image={images[0].image} title="jono" />
             </ImageWrap>
-            <ImageWrap justifyContent="right" >
+            <ImageWrap>
                 <MobileImage height="auto" width="87%" image={images[1].image} title="ehan" />
             </ImageWrap>
-            <ImageWrap justifyContent="center" >
+            <ImageWrap>
                 <MobileImage height="auto" width="90%" image={images[5].image} title="ampm-shoes" />
             </ImageWrap>
-            <ImageWrap justifyContent="end" >
+            <ImageWrap >
                 <MobileImage height="auto" width="80%" image={images[6].image} title="blackcat" />
             </ImageWrap>
-            <ImageWrap justifyContent="center" >
+            <ImageWrap>
                 <MobileImage height="auto" width="98%" image={images[8].image} title="flowerbed" />
             </ImageWrap>
-            <ImageWrap justifyContent="center" >
+            <ImageWrap>
                 <MobileImage height="auto" width="99%" image={images[7].image} title="eves" />
             </ImageWrap>
-            <ImageWrap justifyContent="center" >
+            <ImageWrap>
                 <MobileImage height="auto" width="100%" image={images[9].image} title="bottle" />
             </ImageWrap>
-            <ImageWrap justifyContent="end" >
+            <ImageWrap>
                 <MobileImage height="auto" width="80%" image={images[10].image} title="carpark" />
             </ImageWrap>
-            <ImageWrap justifyContent="left" >
+            <ImageWrap>
                 <MobileImage height="auto" width="96%" image={images[11].image} title="grannys" />
             </ImageWrap>
-            <ImageWrap justifyContent="end" >
+            <ImageWrap>
                 <MobileImage height="auto" width="90%" image={images[12].image} title="xander" />
             </ImageWrap>
-            <ImageWrap justifyContent="center" >
+            <ImageWrap>
                 <MobileImage height="auto" width="100%" image={images[14].image} title="orari" />
             </ImageWrap>
-            <ImageWrap justifyContent="center" >
+            <ImageWrap>
                 <MobileImage height="auto" width="80%" image={images[13].image} title="single-flower" />
             </ImageWrap>
 
@@ -110,7 +111,7 @@ const MobileImage = (props: MobileImageProps) => {
     return (
         <Image
             {...imageProps}
-            style={{ height: height, width: width }}
+            style={{ height: 'auto', width: '100%' }}
             alt="image on gs website"
             sizes="100vw"
             priority={priority}

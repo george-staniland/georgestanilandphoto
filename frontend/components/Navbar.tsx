@@ -105,6 +105,7 @@ const MenuItemsWrap = styled(Box, {
     paddingLeft: '20px',
     position: 'relative',
     overflow: 'visible',
+    height: '17px',
     [theme.breakpoints.up('md')]: {
         width: '40px',
         paddingLeft: '16px',
@@ -125,7 +126,8 @@ const IconWrap = styled(Box, {
 })(({ theme }) => ({
     zIndex: 5,
     cursor: 'pointer',
-    position: 'relative',
+    position: 'absolute',
+    top: '-2px',
     transformOrigin: 'center',
     display: 'flex',
     justifyContent: 'center',

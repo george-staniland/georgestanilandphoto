@@ -38,6 +38,7 @@ interface HomePageImageProps {
 
 export default function HomePageImage(homePageImageProps: HomePageImageProps) {
 
+
     const {
         objectFit = "contain",
         objectPosition = "center",
@@ -66,7 +67,8 @@ export default function HomePageImage(homePageImageProps: HomePageImageProps) {
     }
 
     return (
-        <ImageContainer {...bind(imageMetaData)} paddingTop={paddingTop} >
+        <ImageContainer {...bind(imageMetaData)} paddingTop={paddingTop}>
+
             <Image
                 src={image ? urlFor(image.asset._id).quality(100).url() : Missing}
                 alt={altText}
