@@ -41,7 +41,7 @@ const LargeText = styled('a')(({ theme }) => ({
 
 const Bio = () => {
     return (
-        <Typography variant="body1">George Staniland is a photographer based in Tāmaki Makaurau - Auckland. His work has been shown in galleries across New Zealand and Australia. He continues to seek new and absorbing subjects to photograph while taking on selected commissioned projects.</Typography>
+        <Typography variant="body1">George Staniland is a photographer based in Tāmaki Makaurau - Auckland. His work has been shown in galleries across New Zealand and Australia.</Typography>
     )
 }
 
