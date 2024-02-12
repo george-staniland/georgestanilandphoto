@@ -1,10 +1,16 @@
+import React from 'react';
 import imageUrlBuilder from '@sanity/image-url'
 import { createClient } from 'next-sanity';
 import { useHover } from '@use-gesture/react';
-import { Box, styled, useMediaQuery, useTheme } from '@mui/material';
+import { Box, styled, useMediaQuery, useTheme, Modal, Typography } from '@mui/material';
 import Image from 'next/image';
 import Missing from '../public/assets/missing.png';
 import { SanityImage } from 'models/models';
+
+
+const launchModal = () => {
+    console.log('click!')
+}
 
 const client = createClient({
     projectId: 'nimz3ndn',
@@ -18,6 +24,15 @@ const ImageContainer = styled(Box, {
 })(({ theme }) => ({
     position: 'relative',
     flexGrow: '1',
+    border: '1px solid green',
+}));
+
+const ImageModal = styled(Modal, {
+    label: 'mui-modal',
+})(({ theme }) => ({
+    width: '92%',
+    height: '97%',
+    margin: 'auto',
 }));
 
 interface HomePageImageProps {
@@ -37,6 +52,10 @@ interface HomePageImageProps {
 }
 
 export default function HomePageImage(homePageImageProps: HomePageImageProps) {
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
 
     const {
@@ -67,20 +86,44 @@ export default function HomePageImage(homePageImageProps: HomePageImageProps) {
     }
 
     return (
-        <ImageContainer {...bind(imageMetaData)} paddingTop={paddingTop}>
+        <>
+            <ImageContainer
+                {...bind(imageMetaData)}
+                paddingTop={paddingTop}
+                onClick={handleOpen}
+            >
+                <Image
+                    src={image ? urlFor(image.asset._id).quality(100).url() : Missing}
+                    alt={altText}
+                    fill
+                    priority={priority}
+                    quality="100"
+                    style={{
+                        objectFit: objectFit,
+                        objectPosition: isXLarge ? "center" : objectPosition,
+                    }}
+                    sizes={sizes}
+                />
+            </ImageContainer>
+            <ImageModal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box>
 
-            <Image
-                src={image ? urlFor(image.asset._id).quality(100).url() : Missing}
-                alt={altText}
-                fill
-                priority={priority}
-                quality="100"
-                style={{
-                    objectFit: objectFit,
-                    objectPosition: isXLarge ? "center" : objectPosition,
-                }}
-                sizes={sizes}
-            />
-        </ImageContainer>
+                    <Image
+                        src={image ? urlFor(image.asset._id).quality(100).url() : Missing}
+                        alt={altText}
+                        fill
+                        quality="100"
+                        sizes='100vw'
+                        style={{ objectFit: "contain", }}
+                    />
+
+                </Box>
+            </ImageModal>
+        </>
     )
 }
